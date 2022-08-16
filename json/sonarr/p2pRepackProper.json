@@ -3,8 +3,7 @@
   "trash_id": "71899E6C303A07AF0E4746EFF9873532",
   "includePreferredWhenRenaming": false,
   "required": [],
-  "preferred": [
-    {
+  "preferred": [{
       "score": 180,
       "terms": [
         "/(-deflate|-inflate)\\b/i"
@@ -19,7 +18,7 @@
     {
       "score": 125,
       "terms": [
-        "/(-BTW|-Chotab|-CiT|-DEEP|-iJP|-iT00NZ|-LAZY|-NYH|-SA89|-SIGMA|-TEPES|-TVSmash|-SDCC|-iKA|-iJP|-Cinefeel|-SPiRiT|-FC|-JETIX|-Coo7|-WELP|-KiMCHI|-BLUTONiUM|-orbitron|-ETHiCS|-RTFM|-PSiG|-MZABI|-ROCCaT|3cTWeB|playWEB|-KHN|NPMS|-END)\\b/i"
+        "/(-BTW|-Chotab|-CiT|-DEEP|-iJP|-iT00NZ|-LAZY|-NYH|-SA89|-SIGMA|-TEPES|-TVSmash|-SDCC|-iKA|-iJP|-Cinefeel|-SPiRiT|-FC|-JETIX|-Coo7|-WELP|-KiMCHI|-BLUTONiUM|-orbitron|-ETHiCS|-RTFM|-PSiG|-MZABI|-ROCCaT|3cTWeB|playWEB|-KHN|NPMS|-END|-SiC|-GNOME|-ABBIE)\\b/i"
       ]
     },
     {

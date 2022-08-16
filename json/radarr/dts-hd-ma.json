@@ -10,7 +10,7 @@
       "negate": false,
       "required": true,
       "fields": {
-        "value": "dts[ .-]?(ma\\b|hd[ .-]?ma|hd)(?!china|r)"
+        "value": "dts[ .-]?(ma\\b|hd[ .-]?ma\\b|hd)(?!china|r|maniacs)"
       }
     },
     {
@@ -19,7 +19,7 @@
       "negate": true,
       "required": true,
       "fields": {
-        "value": "TrueHD|\\bATMOS(\\b|\\d)"
+        "value": "True[ .-]?HD|\\bATMOS(\\b|\\d)"
       }
     },
     {
@@ -46,7 +46,7 @@
       "negate": true,
       "required": true,
       "fields": {
-        "value": "\\bDD(\\b|\\d)|(?<!e)ac3"
+        "value": "\\bDD[^a-z+]|(?<!e)ac3"
       }
     },
     {
