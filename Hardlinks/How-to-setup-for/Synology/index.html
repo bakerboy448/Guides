@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://trash-guides.info/Hardlinks/How-to-setup-for/Synology/">
       
       <link rel="icon" href="../../../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.0">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
     
     
       
@@ -62,7 +62,7 @@
   
 
 
-  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-ZZKM4MPQXL"),document.addEventListener("DOMContentLoaded",function(){if(document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document.forms.feedback){var e,a=document.forms.feedback;for(e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}"undefined"!=typeof location$&&location$.subscribe(function(e){n("config","G-ZZKM4MPQXL",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-ZZKM4MPQXL",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-ZZKM4MPQXL"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-ZZKM4MPQXL",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-ZZKM4MPQXL",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
 
   
     <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
@@ -2497,7 +2497,8 @@
 <p>The script is only tested on Synology DSM7.1.</p>
 <p><strong><img alt="‼" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/203c.svg" title=":bangbang:" /> We are not held reliable if anything breaks on your system. Use at your own risk <img alt="‼" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/203c.svg" title=":bangbang:" /></strong></p>
 </div>
-<p>To get this working you will need to enable terminal access (SSH) and home folders</p>
+<p>To get this working you will need to enable terminal access (SSH) and home folders.</p>
+<p>Be sure to delete current running Docker containers related to this guide (ie. *arr apps, download clients), backup settings before you do.</p>
 <p>To enable SSH on your Synology take a look <a href="#ssh" rel="noopener noreferrer" target="_blank">HERE</a>.</p>
 <p>To enable Home folders, go to <code>Control Panel</code> &gt; <code>User &amp; Group</code> &gt; <code>Advanced</code> &gt; <code>Enable user home service</code> at the bottom.</p>
 <p><div class="lightgallery"><a data-sub-html="home-folders" href="../images/home-folders.png"><img alt="home-folders" src="../images/home-folders.png" /></a></div></p>
@@ -2801,7 +2802,7 @@ If you had previous installed apps, make a backup of their config folders.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 15, 2022 16:42:07</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 2, 2022 07:41:27</span>
       
     
   </small>

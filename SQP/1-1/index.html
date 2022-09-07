@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://trash-guides.info/SQP/1-1/">
       
       <link rel="icon" href="../../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.0">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
     
     
       
@@ -62,7 +62,7 @@
   
 
 
-  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-ZZKM4MPQXL"),document.addEventListener("DOMContentLoaded",function(){if(document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document.forms.feedback){var e,a=document.forms.feedback;for(e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}"undefined"!=typeof location$&&location$.subscribe(function(e){n("config","G-ZZKM4MPQXL",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-ZZKM4MPQXL",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-ZZKM4MPQXL"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-ZZKM4MPQXL",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-ZZKM4MPQXL",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
 
   
     <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
@@ -2207,7 +2207,7 @@
 </tbody>
 </table>
 </details>
-<!-- BEGIN INCLUDE ../../includes/cf/misc.md -->
+<!-- BEGIN INCLUDE ../../includes/cf/radarr-misc.md -->
 <details class="summary">
 <summary>Misc - [CLICK TO EXPAND]</summary>
 <table>
@@ -2240,9 +2240,8 @@
 </details>
 </details>
 <!-- END INCLUDE -->
-<!-- --8<-- "includes/cf/misc.md" -->
 
-<!-- BEGIN INCLUDE ../../includes/cf/unwanted.md -->
+<!-- BEGIN INCLUDE ../../includes/cf/radarr-unwanted.md -->
 <details class="summary">
 <summary>Unwanted - [CLICK TO EXPAND]</summary>
 <table>
@@ -2270,9 +2269,14 @@
 <td>90a6f9a284dff5103f6346090e6280c8</td>
 </tr>
 <tr>
-<td><a href="/Radarr/Radarr-collection-of-custom-formats/#x265-7201080p">x265 (HD)</a></td>
+<td><a href="/Radarr/Radarr-collection-of-custom-formats/#x265-hd">x265 (HD)</a> <img alt="⚠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a0.svg" title=":warning:" /></td>
 <td>-10000</td>
 <td>dc98083864ea246d05a42df0d05f81cc</td>
+</tr>
+<tr>
+<td><a href="/Radarr/Radarr-collection-of-custom-formats/#x265-no-hdrdv">x265 (no HDR/DV)</a> <img alt="⚠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a0.svg" title=":warning:" /></td>
+<td>-10000</td>
+<td>839bea857ed2c0a8e084f3cbdbd65ecb</td>
 </tr>
 <tr>
 <td><a href="/Radarr/Radarr-collection-of-custom-formats/#3d">3D</a></td>
@@ -2306,18 +2310,34 @@
 </tr>
 </tbody>
 </table>
-<details class="example">
-<summary>Breakdown and Why - [CLICK TO EXPAND]</summary>
+<hr />
+<p>Breakdown and Why</p>
 <ul>
 <li><strong>BR-DISK :</strong> This is a custom format to help Radarr recognize &amp; ignore BR-DISK (ISO's and Blu-ray folder structure) in addition to the standard BR-DISK quality.</li>
 <li><strong>EVO (no WEBDL):</strong> This group is often banned for the low quality Blu-ray releases, but their WEB-DL are okay.</li>
 <li><strong>LQ:</strong> A collection of known Low Quality groups that are often banned from the the top trackers because the lack of quality or other reasons.</li>
-<li><strong>x265 (HD):</strong> This blocks/ignores 720/1080p releases that are encoded in x265 - More info <a href="/Misc/x265-4k/" rel="noopener noreferrer" target="_blank">HERE</a>.</li>
-<li><strong>3D:</strong> Is 3D still a thing for home use ?</li>
-<li><strong>No-RlsGroup:</strong> [Optional] Some indexers strip out the release group what could result in LQ groups getting a higher score. For example a lot of EVO releases end up stripping the group name, so they appear as "upgrades", and they end up getting a decent score if other things match.</li>
-<li><strong>Obfuscated:</strong> [Optional] (use these only if you dislike renamed releases)</li>
-<li><strong>Retags:</strong> [Optional] (use these only if you dislike retagged releases)</li>
-<li><strong>Bad Dual Groups:</strong> These groups take the original release, then they add their own preferred language (ex. Portuguese) as the main audio track (AAC 2.0), What results after renaming and FFprobe that the media file will be recognized as Portuguese AAC audio. It's a common rule that you add the best audio as first.
+<li>
+<p><strong>x265 (HD):</strong> This blocks 720/1080p (HD) releases that are encoded in x265. - More info <a href="/Misc/x265-4k/" rel="noopener noreferrer" target="_blank">HERE</a>.</p>
+<div class="admonition danger">
+<p class="admonition-title">Don't use this together with <a href="/Radarr/Radarr-collection-of-custom-formats/#x265-no-hdrdv">x265 (no HDR/DV)</a>, Only ever include one of them <img alt="⚠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a0.svg" title=":warning:" /></p>
+</div>
+</li>
+<li>
+<p><strong>x265 (no HDR/DV):</strong> This blocks 720/1080p (HD) releases that are encoded in x265. - More info <a href="/Misc/x265-4k/" rel="noopener noreferrer" target="_blank">HERE</a>.</p>
+<p><strong>But it will allow x265 releases if they have HDR and/or DV</strong></p>
+<p><em>Being that some NF releases won't be released as 4k, but you want to have DV/HDR releases.</em></p>
+<p>In your quality profile use the following score for this Custom Format: <code>-10000</code></p>
+<div class="admonition danger">
+<p class="admonition-title">Don't use this together with <a href="/Radarr/Radarr-collection-of-custom-formats/#x265-hd">x265 (HD)</a>, Only ever include one of them <img alt="⚠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a0.svg" title=":warning:" /></p>
+</div>
+</li>
+<li>
+<p><strong>3D:</strong> Is 3D still a thing for home use ?</p>
+</li>
+<li><strong>No-RlsGroup:</strong> [<em>Optional</em>] Some indexers strip out the release group what could result in LQ groups getting a higher score. For example a lot of EVO releases end up stripping the group name, so they appear as "upgrades", and they end up getting a decent score if other things match.</li>
+<li><strong>Obfuscated:</strong> [<em>Optional</em>] (use these only if you dislike renamed releases)</li>
+<li><strong>Retags:</strong> [<em>Optional</em>] (use these only if you dislike retagged releases)</li>
+<li><strong>Bad Dual Groups:</strong> [<em>Optional</em>] These groups take the original release, then they add their own preferred language (ex. Portuguese) as the main audio track (AAC 2.0), What results after renaming and FFprobe that the media file will be recognized as Portuguese AAC audio. It's a common rule that you add the best audio as first.
 Also they often even rename the release name in to Portuguese.</li>
 <li>
 <p><strong>DV (WEBDL):</strong> This is a special Custom Format that Block WEBDL with Dolby Vision but without HDR10 fallback.</p>
@@ -2335,9 +2355,7 @@ Also they often even rename the release name in to Portuguese.</li>
 </li>
 </ul>
 </details>
-</details>
 <!-- END INCLUDE -->
-<!-- --8<-- "includes/cf/unwanted.md" -->
 
 <h3 id="quality-size">Quality Size<a class="headerlink" href="#quality-size" title="Permanent link"></a></h3>
 <p><code>Settings</code> =&gt; <code>Quality</code></p>
