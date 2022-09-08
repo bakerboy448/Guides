@@ -2257,13 +2257,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#special-edition" class="md-nav__link">
-    Special Edition
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -2346,8 +2339,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#repack-proper" class="md-nav__link">
-    Repack Proper
+  <a href="#repackproper" class="md-nav__link">
+    Repack/Proper
   </a>
   
 </li>
@@ -2841,7 +2834,7 @@ Special thanks to everyone that helped testing and creating these Custom Formats
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>I also suggest to change the Propers and Repacks settings in Sonarr</p>
-<p><code>Media Management</code> =&gt; <code>File Management</code> to <code>Do Not Prefer</code> and use the <a href="#repack-proper">Repack/Proper</a> Custom Format.</p>
+<p><code>Media Management</code> =&gt; <code>File Management</code> to <code>Do Not Prefer</code> and use the <a href="#repackproper">Repack/Proper</a> Custom Format.</p>
 <p><div class="lightgallery"><a data-sub-html="cf-mm-propers-repacks-disable" href="../images/cf-mm-propers-repacks-disable.png"><img alt="cf-mm-propers-repacks-disable" src="../images/cf-mm-propers-repacks-disable.png" /></a></div></p>
 <p>This way you make sure the Custom Format preferences will be used instead.</p>
 </div>
@@ -2950,7 +2943,7 @@ Special thanks to everyone that helped testing and creating these Custom Formats
 <td><a href="#aptv">Apple TV+</a></td>
 </tr>
 <tr>
-<td><a href="#special-edition">Special Editions</a></td>
+<td></td>
 <td><a href="#dv-webdl">DV (WEBDL)</a></td>
 <td><a href="#web-tier-03">WEB Tier 03</a></td>
 <td><a href="#dcu">DC Universe</a></td>
@@ -3053,7 +3046,7 @@ Special thanks to everyone that helped testing and creating these Custom Formats
 <td>&nbsp;</td>
 </tr>
 <tr>
-<td><a href="#repack-proper">Repack/Proper</a></td>
+<td><a href="#repackproper">Repack/Proper</a></td>
 <td><a href="#obfuscated">Obfuscated</a></td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -5672,46 +5665,6 @@ Remaster (also digital remastering and digitally remastered) refers to changing 
 </details>
 <p><sub><sup><a href="#index">TOP</a></sup></p>
 <hr />
-<h3 id="special-edition">Special Edition<a class="headerlink" href="#special-edition" title="Permanent link"></a></h3>
-<details class="faq">
-<summary>Special Edition - [CLICK TO EXPAND]</summary>
-<p>Custom format for several Special Editions</p>
-<ul>
-<li>The Director's Cut is the version edited by the Director, usually for additional home media releases.</li>
-<li>An Extended Cut is usually any version of the film which is longer than the theatrical cut (though in very rare cases, its shorter).</li>
-</ul>
-</details>
-<details class="example">
-<summary>JSON - [CLICK TO EXPAND]</summary>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;trash_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;d6c088c015e1781c4656e36aba94330c&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;trash_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;25&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Special Edition&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;includeCustomFormatWhenRenaming&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;specifications&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Special Edition&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;implementation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ReleaseTitleSpecification&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;negate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(?&lt;!^)\\b(extended|uncut|director|special|unrated|uncensored|cut|version|edition)(\\b|\\d)&quot;</span><span class="w"></span>
-<span class="w">          </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">},</span><span class="w"></span>
-<span class="w">      </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Not Theatrical &quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;implementation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ReleaseTitleSpecification&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;negate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Theatrical&quot;</span><span class="w"></span>
-<span class="w">          </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">]</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
-</details>
-<p><sub><sup><a href="#index">TOP</a></sup></p>
-<hr />
 <h2 id="unwanted">Unwanted<a class="headerlink" href="#unwanted" title="Permanent link"></a></h2>
 <hr />
 <h3 id="br-disk">BR-DISK<a class="headerlink" href="#br-disk" title="Permanent link"></a></h3>
@@ -6066,7 +6019,7 @@ It's all really dependent on specific situations for different people</p>
 <hr />
 <h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link"></a></h2>
 <hr />
-<h3 id="repack-proper">Repack Proper<a class="headerlink" href="#repack-proper" title="Permanent link"></a></h3>
+<h3 id="repackproper">Repack/Proper<a class="headerlink" href="#repackproper" title="Permanent link"></a></h3>
 <details class="example">
 <summary>JSON - [CLICK TO EXPAND]</summary>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
@@ -7396,6 +7349,15 @@ Also they often even rename the release name in to Portuguese.</p>
 <span class="w">      </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;\\b(SIGMA)\\b&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SMURF&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;implementation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ReleaseGroupSpecification&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;negate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;\\b(SMURF)\\b&quot;</span><span class="w"></span>
 <span class="w">      </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">},</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
@@ -12502,7 +12464,7 @@ Also they often even rename the release name in to Portuguese.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 7, 2022 00:47:16</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 7, 2022 20:32:55</span>
       
     
   </small>
