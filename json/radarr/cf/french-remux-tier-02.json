@@ -1,0 +1,98 @@
+{
+  "trash_id": "9019d81307e68cd4a7eb06a567e833b8",
+  "trash_score": "1850",
+  "name": "FR Remux Tier 02",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "Remux",
+      "implementation": "QualityModifierSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": 5
+      }
+    },
+    {
+      "name": "BDHD",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\b(BDHD)\\b"
+      }
+    },
+    {
+      "name": "MARBLECAKE",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\b(MARBLECAKE)\\b"
+      }
+    },
+    {
+      "name": "MiXER",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\b(MiXER)\\b"
+      }
+    },
+    {
+      "name": "MUSTANG",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\b(MUSTANG)\\b"
+      }
+    },
+    {
+      "name": "Obi",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\b(Obi)\\b"
+      }
+    },
+    {
+      "name": "PATOMiEL",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\b(PATOMiEL)\\b"
+      }
+    },
+    {
+      "name": "QUEBEC63",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\b(Q(UEBE)?C63)\\b"
+      }
+    },
+    {
+      "name": "ROMKENT",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\b(ROMKENT)\\b"
+      }
+    },
+    {
+      "name": "Sicario",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\b(Sicario)\\b"
+      }
+    }
+  ]
+}

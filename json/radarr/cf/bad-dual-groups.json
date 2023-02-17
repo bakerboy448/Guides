@@ -10,7 +10,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(-alfaHD)\\b"
+        "value": "\\b(-alfaHD.*$)\\b"
       }
     },
     {
@@ -155,6 +155,15 @@
       "required": false,
       "fields": {
         "value": "\\b(-Tars)\\b"
+      }
+    },
+    {
+      "name": "TvR",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\b(-TvR)\\b"
       }
     },
     {

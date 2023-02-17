@@ -5,12 +5,30 @@
   "includeCustomFormatWhenRenaming": false,
   "specifications": [
     {
+      "name": "DRACULA",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\b(DRACULA)\\b"
+      }
+    },
+    {
       "name": "SLiGNOME",
       "implementation": "ReleaseGroupSpecification",
       "negate": false,
       "required": false,
       "fields": {
         "value": "\\b(SLiGNOME)\\b"
+      }
+    },
+    {
+      "name": "SwAgLaNdEr",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\b(SwAgLaNdEr)\\b"
       }
     },
     {

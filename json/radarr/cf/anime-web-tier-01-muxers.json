@@ -50,12 +50,30 @@
       }
     },
     {
+      "name": "LYS1TH3A",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\b(LYS1TH3A)\\b"
+      }
+    },
+    {
       "name": "Reza",
       "implementation": "ReleaseTitleSpecification",
       "negate": false,
       "required": false,
       "fields": {
         "value": "\\b(Reza)\\b"
+      }
+    },
+    {
+      "name": "sam",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\[sam\\]|-sam\\b"
       }
     },
     {

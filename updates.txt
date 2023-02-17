@@ -1,3 +1,489 @@
+# 2023-02-07 20:45
+**[New]**
+- None
+
+**[Updated]**
+- [SQP 2-5] Added extra info for the HD/UHD merge/split.
+
+**[Fixed]**
+- Fix HBO/HMAX inconsistencies across Sonarr V3/V4 and Radarr.
+- Fix HBO rlsgrp matching HBO/HMAX Streaming CF.
+
+# 2023-02-06 20:15
+**[New]**
+- [Radarr] CF `Line/Mic Dubbed`.
+
+**[Updated]**
+- [SQP 2-5] Added optional to also accept 1080p WEBDL without DV/HDR, if you're only running 1 Radarr so you will also get the HD release if there is no UHD version.
+
+**[Fixed]**
+- None
+
+# 2023-02-05 20:30
+**[New]**
+- None
+
+**[Updated]**
+- [Sonarr v3] Updated several regex and scoring to match Sonarr v4.
+- [Starr] Updated HDR info for AppleTV Profile 5 - It has been confirmed that with the latest beta build of Plex, Profile 5 MKV files now play correctly.
+
+**[Fixed]**
+- None
+
+# 2023-02-04 21:15
+**[New]**
+- [Guide- and Sonarr-FR] Added `ADN` and `Wakanim` streaming services to the French Anime section.
+- [Sonarr-FR] Added Recyclarr French configs for both Web and Anime shows (both MULTi and VOSTFR configs).
+
+**[Updated]**
+- [Guide-FR] Added Seiya to the Anime Acknowledgements as he is the one behind the most recents changes.
+- [Guide-FR] Updated the French Anime section to include the streaming services.
+- [Radarr-FR] Added `Tezcat74` to `FR Remux Tier 01`.
+- [Radarr-FR] Moved `Zapax` to `FR Remux Tier 01`.
+- [Radarr-FR] Moved `Obi` to `FR Remux Tier 02`.
+- [Sonarr-FR] Updated `Good Job! Alexis` to include its other names.
+- [Radarr] Added `MT` to the `LQ` CF because it is just a shortened name of `MTeam`.
+- [Radarr - Naming Scheme] Make people aware of consequences when using the new edition naming format (`{edition-{Edition Tags}}`).
+
+**[Fixed]**
+- [Guide-Anime] Fixed the double ")" for BiliBili.
+
+# 2023-01-30 18:30
+**[New]**
+- None
+
+**[Updated]**
+- None
+
+**[Fixed]**
+- [Radarr] CF `Stan` Fix.
+
+
+# 2023-01-29 21:00
+**[New]**
+- [Starr] Added Streaming Service `STAN`.
+- [Guide - How to setup Quality Profiles] Added extra info to decide if you need to add the audio CF.
+
+**[Updated]**
+- [Starr] Added RlsGrp `JFF` to `LQ`.
+- [Sonarr] Added RlsGrp `PSA` to `LQ`.
+- [Hardlinks - Unraid] Added info to enable hardlinks.
+
+**[Fixed]**
+- None
+
+# 2023-01-28 10:15
+**[New]**
+- None
+
+**[Updated]**
+- [Starr Anime] Added RlsGrp `LYS1TH3A` to `BD tier 02` and `Web Tier 01`.
+- [Sonarr Anime] Added Anime Streaming Services.
+
+**[Fixed]**
+- None
+
+# 2023-01-22 19:45
+*[New]*
+- None
+
+**[Updated]**
+- [Guide-FR] Reworded the Bazarr option for Anime.
+- [Guide- and Sonarr-FR] Synced change from Original Anime Guide to French Anime Guide (added `Tsundere-Raws` to tier 01).
+- [Starr-FR] Removed `KOGi` from French Scene.
+- [Starr-FR] added `Dropse` to `LQ` as they Retag/Rename some Full Bluray disc to Bluray encode.
+- [Starr-FR] added `GLaDOS` to `LQ` due to audio upmix or fake soundtrack and poor quality encoding.
+- [Sonarr-FR] Updated French Anime FanSub Tier.
+- [Sonarr-FR] Updated French Anime Tiers CF.
+- [Sonarr-FR] Removed the `FR Anime Tier Optional` as it is no more really needed.
+
+**[Fixed]**
+- [Sonarr-FR] Fixed misslabeled Specification for Sonarr Bluray and Remux Tiers.
+- [Sonarr-FR] Fixed score to `-10000` for `FastSub`.
+- [Starr] Prevent CF `Opus` (audio) to be matched if Opus is in the release name. (Mainly for Sonarr being the regex matching starts after Episode number, but also added it to Radarr CF to be consistent + Added: regex example).
+- [Starr] Remove RlsGrp `SiC` from CF `DV (WEBDL)` being they now also do DV only.
+
+# 2023-01-19 23:30
+**[New]**
+- None
+
+**[Updated]**
+- None
+
+**[Fixed]**
+- [Guide] `Downloaders - SABnzbd` Fixed incomplete folder being nested inside of the completed folder, The incomplete folder should be adjacent to prevent issues if a script/app is processing the completed folder recursively. *PR#1110*
+
+# 2023-01-18 23:20
+**[New]**
+- None
+
+**[Updated]**
+- [Guide] `Downloaders` Improve description of lowest number of connections. *PR#1109*
+- [Guide] `TRaSH Sync` Updated what the 3rd party apps are able to sync and more. *PR#1109*
+- [Guide] `Radarr How to setup Quality Profiles` add missing streaming service. *PR#1109*
+
+**[Fixed]**
+- None
+
+# 2023-01-18 23:15
+**[New]**
+- None
+
+**[Updated]**
+- [Guide] Removed Amb3r and VOSTFR from the Anime Low Quality Groups as these are French specific Anime groups. *PR#1101*
+- [Guide] Added the standard Web Tiers to the Sonarr Anime guide with scoring that matches as some web groups do Anime releases now. *PR#1101*
+- [Guide] Added VOSTFR with the score -10000 to the Sonarr and Radarr Anime guides as this is for French Anime only *PR#1101*
+
+**[Fixed]**
+- None
+
+# 2023-01-14 21:15
+**[New]**
+- None
+
+**[Updated]**
+- [Guide] `Hardlinks` docker wording updates. *PR#1085*
+- [Guide] Moved folder structure to includes. *PR#1085*
+
+**[Fixed]**
+- [Sonarr] Reverted naming scheme to be consistent with Radarr. *PR#1088* => *PR#1094*
+- [Sonarr] CF `RED` to not match episode title with the word RED. *PR#1098*
+
+# 2023-01-11 23:30
+**[New]**
+- [Starr] How to setup Language Custom Formats. *PR#1086*
+
+**[Updated]**
+- [Downloaders] Add info about the root download path with the categories setup. *PR#1074*
+- [Downloaders] Add distinction between the two screenshots that are merged together. *PR#1077*
+- [Radarr] Add to `How to setup Quality Profiles` a screenshot how the flowchart works incl. description. *PR#1077*
+- [Sonarr v4] CF `Remux Tier 02` added RlsGrp `playBD`. *PR#1084*
+- [Sonarr] Updated naming scheme to be consistent with Radarr. *PR#1088*
+
+**[Fixed]**
+- [Starr] CF `BR-DISK` fix false positive. *PR#1075*
+
+# 2023-01-06 22:45
+**[Sonarr v4]**
+- sync radarr to sonarr streaming CF. *PR#1063*
+
+**[Starr]**
+- Updated: CF `DV HDR10` to match only `DV HDR10`. *PR#1065*
+
+**[Radarr]**
+- Add: RlsGrp `CREATiVE24` to CF `LQ` Poorly named releases including "DTSHD-MA" as PCM WEBDLs as m2ts. *PR#1068*
+- Add: `BCORE`(Bravia Core) to Streaming Services with a score of `15`. *PR#1026*
+- Raised: CF `MA` Score to `20`. *PR#1026*
+
+**[Guide]**
+- Fix: Emby/JF file naming scheme for imdbid. *PR#1071*
+
+# 2023-01-03 22:30
+**[Guide]**
+- Updated: Recommended naming scheme for the Starr apps. *PR#1062*
+- Fixed: Emby/JF Folder naming scheme. *PR#1062*
+- Moved: naming scheme to json. *PR#1062*
+- Clarify what the Audio Channels CFs are for and that they relate to, eg 2.0, 5.1, 7.1 etc. *PR#1051*
+
+**[Starr]**
+- Added: Recyclarr config files to github *PR#1060*
+
+# 2022-12-29 19:30
+**[Starr]**
+*Recommended naming scheme*
+- Added: More information on the pros and cons of using `{Original Title}` vs the recommended naming scheme.  *PR#1047/49*
+
+**[Sonarr v4]**
+- Fix: FR Anime FanSub had the same ID and name as FR WEB Tier 01. *PR#1044*
+- Fix: French WEBDL and WEBRIP had Radarr CF values. *PR#1044*
+
+**[Radarr]**
+- Moved: RlsGrp `BiTOR` from `UHD Bluray Tier 3` to `LQ`. Reason: Fake DV Layer: HDR10+ conversion. *PR#1048*
+
+**[Guide]**
+- Clarify Radarr x265 wording in collection list. *PR#1050*
+
+# 2022-12-25 12:45
+**[Radarr]**
+- Added: Dutch streaming service. *PR #1043*
+- Added: Dutch RlsGrp. *PR #1043*
+
+# 2022-12-24 20:30
+**[Starr]**
+- NEW: CF `DV (FEL)`. *PR#1040*
+- Synced + Sorted CF between the Starr apps. *PR#1040*
+- Renamed Condition `Not Groups` to `Not RlsGrp`. *PR#1040*
+
+**[Sonarr v4]**
+- NEW: Guide French Sonarr Guide. *PR#1036*
+
+# 2022-12-23 21:15
+**[Starr]**
+- Updated: CF `Hybrid`, Include WEBDL + DV/HDR10(+) and TrueHD Conditionals, and swap Hybrid release group to ReleaseGroupSpecification. *PR#1028*
+
+**[Radarr]**
+- NEW: CF `Open Matte`. *PR#1028*
+- NEW: CF `Masters of Cinema`. *PR#1028*
+
+# 2022-12-22 23:15
+**[Starr]**
+- Fix: CF `Bad Dual Groups` for better matching => https://regex101.com/r/0O67fi/1. *PR#1016*
+- Added: `SICFol` to CF `HDR (undefined)`, being they don't add HDR in their release name. *PR#2033*
+
+**[Sonarr]**
+- Added: `DRACULA` to CF `Web Tier 03`. *PR#1025*
+- Updated: Sonarr v4 Guide with a flowchart. *PR#1030*
+
+# 2022-12-10 01:30
+**[Starr]**
+
+- Added: CF `SDR` to collection table. PR#1014
+- Added: DV Info to HDR Formats. PR#1014
+- Fix: CF `Bad Dual Groups` for better matching and prevent download loop => https://regex101.com/r/Rsf0xp/1 PR#1014
+
+**[Sonarr Guide]**
+*[Recommended naming scheme]* PR#1014
+
+- Fix: Conflicting naming scheme example for multi-episode.
+
+# 2022-12-04 18:30
+**[Starr]**
+- Added: `APEX` to CF `WEB Tier 01`. *PR#1003*
+- Added: `Proper2` condition to CF `Repack v2`. *PR#1000*
+- Updated: CF `MA` score so it's not trumped by repacks. *PR#1000*
+- Added: `PQ` condition to CF `SDR` `2160p`. *PR#1000*
+
+**[Radarr]**
+- Updated: CF `Repack` scores to match Sonarr. *PR#1000*
+
+**[Guides]**
+*How to setup Quality Profiles (French) PR#995*
+- Corrected some French wording and grammar.
+- Corrected VFQ format to not recognise FRENCH alone. It needs now MULTi in front of it (but will not recognise the Multi-French format) so it should leave alone the French original movies.
+- This is still not bulletproof but should lead to less false positives.
+
+# 2022-11-27 18:00
+**[NZBGet]**
+*Downloaders - Download Clients PR#992*
+- Added: Warning message `NZBGet development has been officially abandoned by the developer`.
+
+# 2022-11-26 11:45
+**[Sonarr v4]**
+*Guide: Recommended naming scheme PR#991*
+- Sonarr V4 - Is now using Custom Formats instead of Release Profiles. Use the the new naming scheme instead.
+
+**[Sonarr]**
+- Fixed: Emby/JF folder naming changed imdbid to tvdbid, being it doesn't support imdbid according their docs.
+
+# 2022-11-24 22:45
+**[Radarr]**
+*How to setup Quality Profiles (French) #970*
+- Added: a page in French for the French guide.
+
+# 2022-11-24 20:30
+*Sonarr v4 beta to Guide live #985*
+**[Sonarr v4]**
+- NEW: How to import Custom Formats.
+- NEW: How to Update Custom Formats.
+- NEW: How to setup Quality Profiles.
+- NEW: How to setup Quality Profiles (Anime).
+- NEW: Collection of Custom Formats.
+
+# 2022-11-19 09:00
+**[Sonarr]**
+- Added: Videoland + NLZIET streaming services. #973
+- Added: RlsGrp `SwAgLaNdEr` This is a group that's on the BTN list and does Dutch TV shows from different Dutch Streaming Services. #973
+- Added: RlsGrp `CRFW`, `SDCC`, `SLiGNOME`, `T4H`. #973
+- Added: RlsGrp `HONE` known for their hybrid 4k releases. #973
+- Updated: Scores to be consistent with Radarr/Sonarr. #973
+- Updated: Scores to be consistent with Radarr/Sonarr. #973
+
+**[Radarr]**
+- Updated: CF `No-RlsGroup` #975
+
+**[Radarr Guide]**
+*How to setup Quality Profiles*
+- Fix: link to naming guide. #977
+
+# 2022-11-15 00:30
+**[Sonarr]**
+- Add: `Lilith-Raws` to anime-raws. #964
+- Fix: AV1 Formatting in the json. #972
+
+**[Radarr]**
+- Updated: Matching `How to setup Custom Formats` with flowchart. #966
+- Renamed: `How to setup Custom Formats` to `Setup quality profiles`. #966
+- Fixed: copy/paste error for `AV1` json. #967
+- Added: DV info to HDR Flowchart. #971
+
+**[Guide]**
+- Changed: Increase width of the page. #966
+- Removed: Bottom navigation. #966
+- Fixed: Typo that caused unreadable selectetion from navigation. #966
+
+# 2022-11-07 23:00
+**[SQP-1]**
+- Removed: un-needed optional. #962
+- Changed: max quality size. #962
+
+**[Radarr]**
+- Updated: CF `[Special Edition]` Score from `25` to `125`. #962
+
+**[SQP-2-5]**
+- Add: correct link for CF `[SDR]`. #962
+
+# 2022-11-04 23:30
+**[Radarr Guide]**
+- Add: Main Flowchart to `How to setup Custom Formats` guide. #955
+
+# 2022-11-04 22:30
+**[Radarr]**
+- Changed: Min. Quality Size for WEBDL because of the smaller NF releases. #953
+- Fix: CF `[Special Edition]` matching false/positive. #947
+
+**[Starr]**
+- Added: AV1 as optional. #951
+
+**[SQP]**
+- Add: Move selected quality to top tip. #954
+
+# 2022-11-03 19:20
+- Add: `MeGusta` to the Sonarr `LQ` CF and Release Profile. #946
+- Add: Group negation for `OPUS` in the `Opus` CF. #946
+
+# 2022-11-02 20:40
+**[Radarr]**
+- NEW: Publish Radarr Anime guide. #942
+
+# 2022-10-31 22:15
+**[Starr]**
+- Added: Quality Settings (File Size) - Descriptor to values. #939
+
+**[SQP]**
+- Add: CF `SDR` to Unwanted for SQP 2-5. #935
+- Updated: Recyclarr configs for SQP 2-5. #936/7
+
+**[Plex]**
+- Moved: Tips above profiles. #940
+- Fixed: copy/paste option. #940
+- Fixed: Formatting for profiles page. #940
+- Added: warning for untested on new Shield/Chromecast models. #940
+
+**[Guides]**
+- Switched to STARR version listings using the build server. #941
+- Updated: Branch description to match the official WikiArr. #941
+
+# 2022-10-30 21:00
+**[Sonarr]**
+- Add: `HONE` and `CRFW` to `WEB Tier 01` they release DV HDR hybrids of various shows. #934
+
+**[SQP]**
+- NEW: CF `SDR`. #935
+- Updated: CF `2160p` Added Condition `NOT SDR`. #935
+
+# 2022-10-29 19:15
+**[Guides]**
+- Updated: Flowcharts for Audio, HDR Formats and full Flowchart. #931
+
+**[Starr]**
+- NEW: CF `[HDR10+ Boost]` Optional (use this one only if you have a (Samsung) TV that supports HDR10+ and you don't have a Setup that supports DV or you prefer HDR10+. #931
+
+**[SQP]**
+- Add: Warning for x264 score. #931
+
+# 2022-10-25 19:45
+**[SQP]**
+- Add: Resolution scoring so 1080p doesn't outrank 2160p. #924
+**[Radarr]**
+- Fix: French CF. #923
+
+# 2022-10-23 20:45
+**[Sonarr]**
+- Add: Quality profile. #919
+
+# 2022-10-22 13:45
+**[Radarr]**
+- An update of the French guide and Custom Formats. #863
+
+# 2022-10-20 22:35
+**[Sonarr]**
+- Fix: aggressive in Dislike release containing: 1-. #918
+
+# 2022-10-20 22:15
+**[SQP]**
+- Add: [SQP-1] Add also warning for plain IMAX.
+- Add: end of line comment on the scores that override defaults. #917
+
+# 2022-10-20 20:15
+**[Radarr] Removed add movie collection**
+- Removed: `Add a movie collection` => no longer valid. #915
+
+# 2022-10-18 21:20
+**[Prowlarr] Tips for Prowlarr**
+- NEW: How to Setup proxy for certain indexers. #905
+- NEW: How to Setup FlareSolverr. #905
+
+# 2022-10-12 19:25
+**[Guide - Starr Custom Formats]**
+- Added: Audio Flowchart (Hopefully to make the logic/choices more clear). #898
+- Added: HDR Formats Flowchart (Hopefully to make the logic/choices more clear). #898
+
+# 2022-10-10 18:05
+**[Radarr]**
+- Add: WEB-720p quality file size to SQP-1 (#access-to-sqp for more info). #896
+
+# 2022-10-10 17:31
+**[Guide - Downloaders]**
+- Updated: Better description for number of connections. #895
+
+# 2022-10-09
+**[Guide - Synology]**
+- Added: Warning for Automated script to use it only for initial setup. #852
+
+**[Downloaders]**
+- Added: `replace_for` script for SABnzbd and NZBGet to prevent download loops with poorly named releases. #850
+
+**[Radarr]**
+- Fixed: CF `[IMAX]` to prevent double naming. #858
+- Updated: SQP 1-5 (#access-to-sqp for more info). #865 #885 #886
+- Deleted: CF `UHD (rlsgrp)` => replaced by the `UHD Bluray Tier` ones. #883
+- Replaced: `ReleaseTitleSpecification` to `ReleaseGroupSpecification`, this will result in breakage for anyone not running the latest version of Radarr. #883
+- Added: RlsGrp `BiTOR` to `[UHD Bluray Tier 03]`. #883
+- Updated: CF `[Extras]` to include `Bonus`. #887
+- Updated: Lowered Quality Size for 1080p WEB. #890
+
+**[Starr]**
+- Fixed: Several Anime version CF's. #875
+- Fixed: CF `[DTS-HD MA]` removed `DTS` negation (With a release tagged as DTS but detected on import as DTS-HD MA, no CFs will be applied to the file on disk because of the Basic DTS negation. This results in a grab/upgrade loop.) #878
+- Fixed: CF `[Scene]`. #883
+
+# 2022-09-29
+**[Radarr]**
+- Added: UHD Tier 01 - 03 (SQP). #845
+- Added: French CF.
+
+**[Guide]**
+- NEW: How to setup Custom Formats (French). #645
+
+# 2022-09-24
+**[Starr]**
+- Updated: `[Anime Web Tier 04]` CFs for Radarr and Sonarr also updated hash ID due to name changes. #840
+
+**[Radarr]**
+- Added: `L0SERNIGHT` to CF `[LQ]`. #841
+- Added: CF `[UHD Tier 01 - 03]`. #845
+- Moving Yameii from `[Anime LQ]` CF to `[Dubs Only]` CF. #839
+
+**[Sonarr]**
+- Moving Yameii from `[Anime LQ]` to `[Dubs Only]` for Sonarr CFs #838
+
+**[Guide]**
+- Reorganized the table order for certain categories. #843
+- Removed: Sonarr {[MediaInfo VideoDynamicRangeType]} version warning. #844
+- Removed: Radarr {[MediaInfo VideoDynamicRangeType]} version warning. #844
+- Removed: link to imdb support for plex. #844
+- Missed dubs only in the anime tables #837
+
 # 2022-09-15
 **[Starr]**
 - Added: Not DTS X condition to prevent false positive. #818
