@@ -37,7 +37,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(FUJiSAN)\\b"
+        "value": "^(FUJiSAN)$"
       }
     },
     {
@@ -46,7 +46,16 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(HANAMi)\\b"
+        "value": "^(HANAMi)$"
+      }
+    },
+    {
+      "name": "HDForever",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "^(HDForever)$"
       }
     },
     {
@@ -55,16 +64,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(HeavyWeight)\\b"
-      }
-    },
-    {
-      "name": "HLX",
-      "implementation": "ReleaseGroupSpecification",
-      "negate": false,
-      "required": false,
-      "fields": {
-        "value": "\\b(HLX)\\b"
+        "value": "^(HeavyWeight)$"
       }
     },
     {
@@ -73,16 +73,16 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(MARBLECAKE)\\b"
+        "value": "^(MARBLECAKE)$"
       }
     },
     {
-      "name": "NEO",
+      "name": "MYSTERiON",
       "implementation": "ReleaseGroupSpecification",
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(NEO)\\b"
+        "value": "^(MYSTERiON)$"
       }
     },
     {
@@ -91,7 +91,25 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(NoNE)\\b"
+        "value": "^(NoNE)$"
+      }
+    },
+    {
+      "name": "ONLY",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "^(ONLY)$"
+      }
+    },
+    {
+      "name": "ONLYMOViE",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "^(ONLYMOViE)$"
       }
     },
     {
@@ -100,7 +118,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(TkHD)\\b"
+        "value": "^(TkHD)$"
       }
     },
     {
@@ -109,7 +127,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(UTT)\\b"
+        "value": "^(UTT)$"
       }
     }
   ]

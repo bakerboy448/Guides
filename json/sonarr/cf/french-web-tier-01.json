@@ -23,48 +23,30 @@
       }
     },
     {
-      "name": "ARK01",
-      "implementation": "ReleaseGroupSpecification",
-      "negate": false,
-      "required": false,
-      "fields": {
-        "value": "\\b(ARK01)\\b"
-      }
-    },
-    {
       "name": "BONBON",
       "implementation": "ReleaseGroupSpecification",
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(BONBON)\\b"
+        "value": "^(BONBON)$"
       }
     },
     {
-      "name": "BraD",
+      "name": "FCK",
       "implementation": "ReleaseGroupSpecification",
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(BraD)\\b"
+        "value": "^(FCK)$"
       }
     },
     {
-      "name": "COLL3CTiF",
+      "name": "FRATERNiTY",
       "implementation": "ReleaseGroupSpecification",
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(COLL3CTiF)\\b"
-      }
-    },
-    {
-      "name": "D3L0P@tte",
-      "implementation": "ReleaseGroupSpecification",
-      "negate": false,
-      "required": false,
-      "fields": {
-        "value": "\\b(D3L0P(@tte)?)\\b"
+        "value": "^(FRATERNiTY)$"
       }
     },
     {
@@ -73,7 +55,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(MTDK)\\b"
+        "value": "^(MTDK)$"
       }
     },
     {
@@ -82,16 +64,16 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(NoLo)\\b"
+        "value": "^(NoLo)$"
       }
     },
     {
-      "name": "ONLY",
+      "name": "PATOPESTO",
       "implementation": "ReleaseGroupSpecification",
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(ONLY)\\b"
+        "value": "^(PATOPESTO)$"
       }
     },
     {
@@ -100,7 +82,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(Psaro)\\b"
+        "value": "^(Psaro)$"
       }
     }
   ]

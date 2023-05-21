@@ -1,3 +1,220 @@
+# 2023-05-18 12:00
+**[New]**
+- [Radarr] Added CF `Remux Tier 03`, This way we can fine tune the RlsGrps even more. please update your automation sync tools to accept the new CF.
+- [Starr] Added CF 'VP9'.
+- [SQP-1 2160p] [WIP] Started testing a 2160p SQP that's Optimized for PLEX, Emby, Jellyfin, and other streaming platforms. more info check the SQP channel.
+
+**[Updated]**
+- [Radarr] Increased the score for CF `Remux Tier 01-02`.
+
+**[Fixed]**
+- [Starr] Added `HLG` to CF `2160p`.
+
+# 2023-05-09 19:35
+**[New]**
+- None
+
+**[Updated]**
+- [Sonarr] Added RlsGrp `TG` to `LQ` - because they do releases in strange aspect ratios and mislabel their releases.
+
+**[Fixed]**
+- [Guide - Hardlinks] Added the usenet incomplete folder to the folder tree.
+
+# 2023-05-07 19:00
+**[New]**
+- None
+
+**[Updated]**
+- [Sonarr] Changed quality size mix/max - Set the max size to max to be consistent with Radarr, and this also helps to prevent issues with usenet files being always bigger, lowered the min size for several qualities.
+
+**[Fixed]**
+- None
+
+# 2023-04-23 23:05
+**[New]**
+- [Starr-FR] Added `VF2` CF
+- [Starr-FR] Added French Sonarr 2160p Recyclarr configs
+- [Starr-FR] Added French Radarr Recyclarr configs to the templates
+- [Radarr] Add 'Vinegar Syndrome' to Radarr movie version includes
+
+**[Updated]**
+- [Guide - SQP-1] Improved readability.
+- [Guide - Starr Naming scheme] Added extra placeholder for the original title.
+- [Guide - Starr] Removed old reference to `HQ-xxx` in the `How to setup Quality Profiles`.
+- [Guide - Starr] Updated DV info for the ATV.
+- [Guide-FR] Updated wording on how to score VF audio CFs depending on preferences
+- [Starr-FR] Updated groups CF to avoid double scoring
+- [Starr-FR] Updated the Recyclarr configs to follow new changes around VF audio
+- [Starr-FR] Added the `Vinegar Syndrome` CF to the Recyclarr configs
+- [Sonarr-Anime-FR] Added `Aoi-Project` to FR Anime Tier 2
+- [Sonarr-Anime-FR] Added `Nagutos` to FR Anime Tier 2
+
+**[Fixed]**
+- [Radarr] Fix double groups (e.g. KiNGS-BTW) matching both CFs - Changed group spec condition regex for most CFs that use it, to be more restrictive..
+- [Guide] Fixed several typo's and formatting.
+- [Guide] Fixed Radarr discord link.
+- [Guide] Fixed superscript consistent.
+- [Starr-FR] Updated Recyclarr configs to support new system for v5
+- [Starr-FR] Update Recyclarr configs with missing SDR CF in Unwanted section
+- [Sonarr-Anime-FR] Fixed Groupe Tier specification from `ReleaseGroupSpecification` to `ReleaseTitleSpecification` as anime naming is weird
+- [Sonarr-Anime-FR] Fixed `Natsumi` naming to `Natsumi-no-Sekai` in FR Anime FanSUB
+- [Recyclarr] Add `Pathe` streaming service to Radarr recyclarr configs
+- [Recyclarr] Add missing `x265 (HD)` CF from some Radarr recyclarr configs
+
+# 2023-04-20 21:35
+**[New]**
+- None
+
+**[Updated]**
+- [Sonarr] added RlsGrp `CMRG` to `Tier 02`.
+
+**[Fixed]**
+- [Sonarr v4] fixed WEB Tier RlsGrp conditions to prevent double scoring.
+
+# 2023-04-17 18:50
+**[New]**
+- None
+
+**[Updated]**
+- [Starr Anime] Added `LazyRemux` to tier 03.
+
+**[Fixed]**
+- [Radarr] Fixed web tier 03 CF for Radarr. Wrong source codes were used.
+
+# 2023-04-16 19:45
+**[New]**
+- [Prowlarr] How to setup indexers with limited API.
+
+**[Updated]**
+- [Guides Hardlinks] Improve readability paths.
+
+**[Fixed]**
+- [Anime Guide] Updated SeaDex URLs to point to the correct URL.
+
+# 2023-04-06 19:30
+**[New]**
+- None
+
+**[Updated]**
+- [Starr] Added RlsGrp `XEBEC` to CF `Web Tier 2`.
+- [Radarr] Add RlsGrp `GPTHD` to `LQ` custom format. (filenames are improperly named, hardcoded Chinese subtitles)
+
+**[Fixed]**
+- [Sonarr v4] Adjust the regex to account for episode titles. Fix the `SHO` CF wrongfully matching "Showtime" in the episode title.
+- [Guide] (Starr) Correct the scores for some `Unwanted`/`Optional` CFs in the Guides. Change the scores in the Guides from `-1000` OR `-10000` to only `-10000`.
+- [Guide] (Sonarr v4) Fixed proper description was still pointing to v3 regex.
+- [Guide] (SABnzbd) Update breakdown path image - The SABnzbd path and categories has an outdated image that have caused some conflicting.
+- [Guide] (SABnzbd) V4.0.0 (current beta) introduced a couple of input variables, that weren't available in the versions before. This PR fixes the two scripts in the Guide, so they are compatible with earlier and V4+ versions.
+
+# 2023-03-27 19:00
+**[New]**
+- None
+
+**[Updated]**
+- None
+
+**[Fixed]**
+- [Sonarr v3] Fix copy/paste error with PR#1234 for the Optional `Scene` prevent matching on releases renamed by trackers.
+
+# 2023-03-26 11:00
+**[New]**
+- None
+
+**[Updated]**
+- None
+
+**[Fixed]**
+- [Starr] CF `Scene` prevent matching on releases renamed by trackers.
+
+# 2023-03-18 12:40
+**[Info]**
+- The current French Tiers have been revised to make them a bit easier to update and follow
+- The groups inside the tiers have therefore been moved and audited accordingly
+**[New]**
+- [Radarr] Add a CF for `Vinegar Syndrome` releases to properly score and grab them.
+- [Starr-FR] Added `AZAZE` to FR LQ
+- [Starr-FR] Added `HiggsBoson` and `LYPSG` to FR Scene
+- [Radarr-FR] Added `FanSUB` and `FastSUB` CFs
+- [Radarr-FR] Added French Recyclarr configs (both MULTi and VOSTFR versions)
+- [Sonarr-FR] Added `Delivroozzi` and `Fuceo` to Sonarr Anime Tier 1
+**[Updated]**
+- [Guide-FR] Updated Unwanted sections
+- [Starr-FR] Updated tiers according to the new descriptions
+- [Sonarr-FR] Added the `CC` CF to the recyclarr configs
+**[Fixes]**
+- [Sonarr-FR] Updated `Multi-French` CF to include the MULTi condition that was missing
+
+# 2023-03-12 16:45
+**[New]**
+- None
+
+**[Updated]**
+- [Radarr] Add a Regrade condition to the `Upscaled` CF.
+- [Radarr] Add `ONLYMOViE` to the `Bad Dual Groups` custom format.
+- [Sonarr v3] Update screenshots to reflect current settings.
+- [Sonarr v3] Tried to make it more clear that you need to use 4 separate profiles.
+- [Downloaders - SABnzbd] Updated screenshots to match the new Starr apps layouts.
+- [Downloaders - SABnzbd] Added instructions how to whitelist your host if you get a `Unable to connect to SABnzbd` error.
+
+**[Fixed]**
+- [Radarr] Fix the `Upscale`d CF not matching `Upscale` in the release title.
+- [Starr] Add No `HDR10/HDR10+` to CF `HDR`, To prevent double scoring.
+- [Radarr] Exclude `Open Matte` from `Special Edition` CF.
+
+# 2023-03-04 17:15
+**[New]**
+- None
+
+**[Updated]**
+- [Radarr] Moved RlsGrp `SPHD` to the lowest UHD tier, because they often use Lower Quality sources for their releases.
+- [Radarr] Added RlsGrp `LAMA` to the `LQ` CF, uploading 480p cam shit as 1080p bluray and just in general low quality.
+- [Radarr] CF `Special Edition`, Special Edition matches `IMAX Edition`, so adding unnecessary extra scoring to releases that already match `IMAX`.
+
+**[Fixed]**
+- [Guide] Fix broken links.
+
+# 2023-02-26 19:45
+**[New]**
+- None
+
+**[Updated]**
+- [Guide - unRaid qBit Mover script] Added If you have authentication enabled. Add `'` either side of your User/Password.
+- [Guide - Guide Sync] Move features to a table instead of the footnotes.
+
+**[Fixed]**
+- [Radarr] CF `Upscaled` in wrong quality profile.
+
+# 2023-02-19 20:30
+**[New]**
+- [Hardlinks Guide] NEW Guide for Truenas Core.
+- [Guide-Sync] Added link to recyclarr landing page with configs.
+
+**[Updated]**
+- [Guide] Moved the trash-sync page to it's own Guide-Sync entry on the home screen.
+
+**[Fixed]**
+- None
+
+# 2023-02-19 13:30
+**[New]**
+- None
+
+**[Updated]**
+- None
+
+**[Fixed]**
+- [Starr] Fix mistakes in changes to the HDR metadata CFs - Change some regex to correctly match `DV`, `HDR10` and `DV (FEL)`.
+
+# 2023-02-18 21:45
+**[New]**
+- [Radarr] New CF `Upscaled` - A custom format that matches the most commonly used terms in upscaled releases.
+
+**[Updated]**
+- [Starr] Rewrote almost all the regex for the HDR metadata CFs to be oneliners, to prevent false matches from happening.
+
+**[Fixed]**
+- None
+
 # 2023-02-17 22:40
 **[New]**
 - None

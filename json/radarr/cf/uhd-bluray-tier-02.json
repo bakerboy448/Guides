@@ -10,16 +10,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\bHQMUX\\b"
-      }
-    },
-    {
-      "name": "SPHD",
-      "implementation": "ReleaseGroupSpecification",
-      "negate": false,
-      "required": false,
-      "fields": {
-        "value": "\\bSPHD\\b"
+        "value": "^(HQMUX)$"
       }
     },
     {

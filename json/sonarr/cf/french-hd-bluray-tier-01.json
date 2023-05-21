@@ -37,7 +37,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(ARK01)\\b"
+        "value": "^(ARK01)$"
       }
     },
     {
@@ -46,16 +46,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(BONBON)\\b"
-      }
-    },
-    {
-      "name": "COLL3CTiF",
-      "implementation": "ReleaseGroupSpecification",
-      "negate": false,
-      "required": false,
-      "fields": {
-        "value": "\\b(COLL3CTiF)\\b"
+        "value": "^(BONBON)$"
       }
     },
     {
@@ -64,7 +55,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(FRATERNiTY)\\b"
+        "value": "^(FRATERNiTY)$"
       }
     },
     {
@@ -73,34 +64,16 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(FTMVHD)\\b"
+        "value": "^(FTMVHD)$"
       }
     },
     {
-      "name": "HDForever",
+      "name": "HeavyWeight",
       "implementation": "ReleaseGroupSpecification",
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(HDForever)\\b"
-      }
-    },
-    {
-      "name": "KFL",
-      "implementation": "ReleaseGroupSpecification",
-      "negate": false,
-      "required": false,
-      "fields": {
-        "value": "\\b(KFL)\\b"
-      }
-    },
-    {
-      "name": "LYPSG",
-      "implementation": "ReleaseGroupSpecification",
-      "negate": false,
-      "required": false,
-      "fields": {
-        "value": "\\b(LYPSG)\\b"
+        "value": "^(HeavyWeight)$"
       }
     },
     {
@@ -109,7 +82,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(Psaro)\\b"
+        "value": "^(Psaro)$"
       }
     }
   ]

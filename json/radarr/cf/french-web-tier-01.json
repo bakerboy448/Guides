@@ -23,21 +23,21 @@
       }
     },
     {
-      "name": "ARK01",
-      "implementation": "ReleaseGroupSpecification",
-      "negate": false,
-      "required": false,
-      "fields": {
-        "value": "\\b(ARK01)\\b"
-      }
-    },
-    {
       "name": "BONBON",
       "implementation": "ReleaseGroupSpecification",
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(BONBON)\\b"
+        "value": "^(BONBON)$"
+      }
+    },
+    {
+      "name": "FCK",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "^(FCK)$"
       }
     },
     {
@@ -46,7 +46,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(FoX)\\b"
+        "value": "^(FoX)$"
       }
     },
     {
@@ -55,7 +55,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(FRATERNiTY)\\b"
+        "value": "^(FRATERNiTY)$"
       }
     },
     {
@@ -64,7 +64,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(FrIeNdS)\\b"
+        "value": "^(FrIeNdS)$"
       }
     },
     {
@@ -73,7 +73,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(MOONLY)\\b"
+        "value": "^(MOONLY)$"
       }
     },
     {
@@ -82,25 +82,16 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(MTDK)\\b"
+        "value": "^(MTDK)$"
       }
     },
     {
-      "name": "NoNe",
+      "name": "PATOPESTO",
       "implementation": "ReleaseGroupSpecification",
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(NoNe)\\b"
-      }
-    },
-    {
-      "name": "ONLYMOViE",
-      "implementation": "ReleaseGroupSpecification",
-      "negate": false,
-      "required": false,
-      "fields": {
-        "value": "\\b(ONLYMOViE)\\b"
+        "value": "^(PATOPESTO)$"
       }
     },
     {
@@ -109,7 +100,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(Psaro)\\b"
+        "value": "^(Psaro)$"
       }
     },
     {
@@ -118,7 +109,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(T3KASHi)\\b"
+        "value": "^(T3KASHi)$"
       }
     }
   ]

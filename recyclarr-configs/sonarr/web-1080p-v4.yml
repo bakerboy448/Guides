@@ -1,11 +1,15 @@
 # This config file is for use with Sonarr V4 only
 sonarr:
-  sonarr: # A custom name used to identify this particular instance.
-    base_url: [sonarr_url_goes_here]
-    api_key: [api_key_goes_here]
+  sonarr:  # A custom name used to identify this particular instance.
+    base_url: Put your Sonarr URL here
+    api_key: Put your API key here
 
     quality_definition:
       type: series
+
+    quality_profiles:
+      - name: WEB-1080p
+        reset_unmatched_scores: true
 
     custom_formats:
       # Scores from TRaSH json
@@ -44,4 +48,3 @@ sonarr:
           - d0c516558625b04b363fa6c5c2c7cfd4  # WEB Scene
         quality_profiles:
           - name: WEB-1080p
-            reset_unmatched_scores: true

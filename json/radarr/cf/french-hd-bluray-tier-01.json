@@ -37,16 +37,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(BDHD)\\b"
-      }
-    },
-    {
-      "name": "D3L0P@tte",
-      "implementation": "ReleaseGroupSpecification",
-      "negate": false,
-      "required": false,
-      "fields": {
-        "value": "\\b(D3L0P(@tte)?)\\b"
+        "value": "^(BDHD)$"
       }
     },
     {
@@ -55,7 +46,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(FoX)\\b"
+        "value": "^(FoX)$"
       }
     },
     {
@@ -64,7 +55,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(FRATERNiTY)\\b"
+        "value": "^(FRATERNiTY)$"
       }
     },
     {
@@ -73,16 +64,16 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(FrIeNdS)\\b"
+        "value": "^(FrIeNdS)$"
       }
     },
     {
-      "name": "ONLY",
+      "name": "MAX",
       "implementation": "ReleaseGroupSpecification",
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(ONLY)\\b"
+        "value": "^(MAX)$"
       }
     },
     {
@@ -91,16 +82,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(Psaro)\\b"
-      }
-    },
-    {
-      "name": "SowHD",
-      "implementation": "ReleaseGroupSpecification",
-      "negate": false,
-      "required": false,
-      "fields": {
-        "value": "\\b(SowHD)\\b"
+        "value": "^(Psaro)$"
       }
     },
     {
@@ -109,7 +91,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(T3KASHi)\\b"
+        "value": "^(T3KASHi)$"
       }
     }
   ]

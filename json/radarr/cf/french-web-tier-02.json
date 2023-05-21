@@ -28,16 +28,16 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(ALLDAYiN)\\b"
+        "value": "^(ALLDAYiN)$"
       }
     },
     {
-      "name": "FCK",
+      "name": "ARK01",
       "implementation": "ReleaseGroupSpecification",
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(FCK)\\b"
+        "value": "^(ARK01)$"
       }
     },
     {
@@ -46,7 +46,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(FUJiSAN)\\b"
+        "value": "^(FUJiSAN)$"
       }
     },
     {
@@ -55,7 +55,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(FW)\\b"
+        "value": "^(FW)$"
       }
     },
     {
@@ -64,7 +64,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(HANAMi)\\b"
+        "value": "^(HANAMi)$"
       }
     },
     {
@@ -73,7 +73,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(HeavyWeight)\\b"
+        "value": "^(HeavyWeight)$"
       }
     },
     {
@@ -82,7 +82,16 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(NEO)\\b"
+        "value": "^(NEO)$"
+      }
+    },
+    {
+      "name": "NoNe",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "^(NoNe)$"
       }
     },
     {
@@ -91,7 +100,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(Slay3R)\\b"
+        "value": "^(Slay3R)$"
       }
     },
     {
@@ -100,7 +109,7 @@
       "negate": false,
       "required": false,
       "fields": {
-        "value": "\\b(TkHD)\\b"
+        "value": "^(TkHD)$"
       }
     }
   ]
