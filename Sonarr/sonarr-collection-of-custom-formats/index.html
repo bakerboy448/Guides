@@ -1351,6 +1351,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#extras" class="md-nav__link">
+    Extras
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3925,6 +3932,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#extras" class="md-nav__link">
+    Extras
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4939,7 +4953,7 @@ Special thanks to everyone that helped testing and creating these Custom Formats
 </tr>
 <tr>
 <td></td>
-<td></td>
+<td><a href="#extras">Extras</a></td>
 <td><a href="#hd-bluray-tier-02">HD Bluray Tier 02</a></td>
 <td><a href="#dsnp">Disney+</a></td>
 </tr>
@@ -8074,6 +8088,35 @@ It's all really dependent on specific situations for different people</p>
 </details>
 <p><sub><sup><a href="#index">TOP</a></sup></p>
 <hr />
+<h3 id="extras">Extras<a class="headerlink" href="#extras" title="Permanent link"></a></h3>
+<details class="question">
+<summary>Extras - [CLICK TO EXPAND]</summary>
+<p>This blocks/ignores Extra's</p>
+</details>
+<details class="example">
+<summary>JSON - [CLICK TO EXPAND]</summary>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;trash_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fbcb31d8dabd2a319072b84fc0b7249c&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;trash_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-10000&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;trash_regex&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://regex101.com/r/lZ9iTm/1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Extras&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;includeCustomFormatWhenRenaming&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;specifications&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Extras&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;implementation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ReleaseTitleSpecification&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;negate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(?&lt;=\\bS\\d+\\b).*\\b(Extras|Bonus)\\b&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<p><sub><sup><a href="#index">TOP</a></sup></p>
+<hr />
 <h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link"></a></h2>
 <hr />
 <h3 id="repackproper">Repack/Proper<a class="headerlink" href="#repackproper" title="Permanent link"></a></h3>
@@ -8936,7 +8979,7 @@ For example a lot of EVO releases end up stripping the group name, so they appea
 <span class="w">      </span><span class="nt">&quot;negate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^(?=.*([_. ]WEB[_. ])(?!DL)\\b)|\\b(-CAKES|-GGEZ|-GGWP|-GLHF|-GOSSIP|-NAISU|-KOGI|-PECULATE|-SLOT)&quot;</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^(?=.*([_. ]WEB[_. ])(?!DL)\\b)|\\b(-CAKES|-GGEZ|-GGWP|-GLHF|-GOSSIP|-NAISU|-KOGI|-PECULATE|-SLOT|-EDITH)&quot;</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
@@ -9029,7 +9072,7 @@ For example a lot of EVO releases end up stripping the group name, so they appea
 <span class="w">      </span><span class="nt">&quot;negate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;\\b(dv|dovi|dolby[ .]?vision|hdr(10(P(lus)?)?)?)\\b&quot;</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;\\b(dv|dovi|dolby[ .]?vision|hdr(10(P(lus)?)?)?|pq)\\b&quot;</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
@@ -18119,7 +18162,7 @@ For example a lot of EVO releases end up stripping the group name, so they appea
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 4, 2023 18:28:12</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 10, 2023 18:52:31</span>
       
     
   </small>
