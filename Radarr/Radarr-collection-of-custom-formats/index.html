@@ -5887,7 +5887,65 @@ Special thanks to <a href="https://github.com/rg9400">rg9400</a>, <a href="https
 <h3 id="dts-hd-hra">DTS-HD HRA<a class="headerlink" href="#dts-hd-hra" title="Permanent link"></a></h3>
 <details class="question">
 <summary>DTS-HD HRA - [CLICK TO EXPAND]</summary>
-<p>Description placeholder</p>
+<p><a href="https://www.opusproductions.com/pdfs/DTS_HD_WhitePaper.pdf" rel="noopener noreferrer" target="_blank">Technical Whitepaper</a></p>
+<table>
+<thead>
+<tr>
+<th>Codec</th>
+<th>Page</th>
+<th>Paragraph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DTS-HD MA</td>
+<td>Page 6</td>
+<td>5.1.1</td>
+</tr>
+<tr>
+<td>DTS-HD HRA</td>
+<td>Page 7</td>
+<td>5.1.2</td>
+</tr>
+</tbody>
+</table>
+<p>DTS-HD HRA is the lossy version of DTS-HD MA.</p>
+<table>
+<thead>
+<tr>
+<th>Codec</th>
+<th>DTS-HRA</th>
+<th>DTS-MA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lossy/lossless</td>
+<td>Lossy</td>
+<td>Lossless</td>
+</tr>
+<tr>
+<td>Data rate</td>
+<td>1.5 - 6.0 Mbit/s</td>
+<td>VBR - 24.5 Mbit/s</td>
+</tr>
+<tr>
+<td>Channels</td>
+<td>Up to 7.1 ch</td>
+<td>Up to 7.1 ch</td>
+</tr>
+<tr>
+<td>Sampling Freq.</td>
+<td>96 kHz</td>
+<td>192 kHz</td>
+</tr>
+<tr>
+<td>Resolution</td>
+<td>-</td>
+<td>Up to 24-bit</td>
+</tr>
+</tbody>
+</table>
 </details>
 <details class="example">
 <summary>JSON - [CLICK TO EXPAND]</summary>
@@ -7654,21 +7712,21 @@ Advanced Audio Coding (AAC) is an audio coding standard for lossy digital audio 
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;WEBDL w/ DV HDR10(+) or TrueHD&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;implementation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ReleaseTitleSpecification&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;negate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^(?=.*\\b(web[ ._-]?(dl|rip))\\b)(((?=.*\\b(DV|DoVi)\\b)((?=.*\\b(HDR10(\\+|P(lus))?)\\b)|(?=.*\\b(HDR(10)?)\\b)))|(?=.*\\b(True[ .-]?HD)\\b))&quot;</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Not Hybrid Release Group&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;implementation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ReleaseGroupSpecification&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;negate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;\\b(HYBRID)\\b&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Remux&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;implementation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;QualityModifierSpecification&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;negate&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
@@ -10002,7 +10060,7 @@ For example a lot of EVO releases end up stripping the group name, so they appea
 <summary>JSON - [CLICK TO EXPAND]</summary>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;trash_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;e7718d7a3ce595f289bfee26adc178f5&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;trash_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;trash_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;trash_regex&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://regex101.com/r/S91wR8/2&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Repack/Proper&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;includeCustomFormatWhenRenaming&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
@@ -10044,7 +10102,7 @@ For example a lot of EVO releases end up stripping the group name, so they appea
 <summary>JSON - [CLICK TO EXPAND]</summary>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;trash_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ae43b294509409a6a13919dedd4764c4&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;trash_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;12&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;trash_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;trash_regex&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://regex101.com/r/kQ4oeP/1&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Repack2&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;includeCustomFormatWhenRenaming&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
@@ -18478,7 +18536,7 @@ This applies to all releases that are x265/HEVC that are not Remux.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 23, 2023 20:29:25</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 11, 2023 20:33:58</span>
       
     
   </small>
