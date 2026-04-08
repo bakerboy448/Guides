@@ -9,9 +9,11 @@ on:
         type: choice
         options:
           - add-cf-to-group
+          - add-cf-to-profile
           - include-group-in-profile
           - add-profile-to-group
           - new-cf-group
+          - new-profile-group
           - validate
           - list-profiles
           - list-cf-groups
@@ -28,7 +30,7 @@ on:
         required: false
         type: string
       cf_trash_id:
-        description: "CF trash_id to add (for add-cf-to-group)"
+        description: "CF trash_id to add (for add-cf-to-group, add-cf-to-profile)"
         required: false
         type: string
       cf_required:
@@ -44,11 +46,11 @@ on:
         required: false
         type: string
       profile_slug:
-        description: "Quality profile slug (for include-group-in-profile, add-profile-to-group)"
+        description: "Quality profile slug (for add-cf-to-profile, include-group-in-profile, add-profile-to-group)"
         required: false
         type: string
       group_name:
-        description: "Group name in groups.json (for add-profile-to-group, e.g. Standard)"
+        description: "Group name in groups.json (for add-profile-to-group, new-profile-group)"
         required: false
         type: string
       cf_group_name:
@@ -115,6 +117,14 @@ jobs:
                 ARGS="$ARGS --default ${{ inputs.cf_default }}"
               fi
               ;;
+            add-cf-to-profile)
+              if [[ -z "${{ inputs.profile_slug }}" || -z "${{ inputs.cf_trash_id }}" ]]; then
+                echo "::error::add-cf-to-profile requires profile_slug and cf_trash_id"
+                exit 1
+              fi
+              ARGS="$ARGS --profile-slug '${{ inputs.profile_slug }}'"
+              ARGS="$ARGS --cf-trash-id '${{ inputs.cf_trash_id }}'"
+              ;;
             include-group-in-profile)
               if [[ -z "${{ inputs.group_file }}" || -z "${{ inputs.profile_slug }}" ]]; then
                 echo "::error::include-group-in-profile requires group_file and profile_slug"
@@ -143,6 +153,13 @@ jobs:
               if [[ "${{ inputs.cf_group_default }}" == "true" ]]; then
                 ARGS="$ARGS --default"
               fi
+              ;;
+            new-profile-group)
+              if [[ -z "${{ inputs.group_name }}" ]]; then
+                echo "::error::new-profile-group requires group_name"
+                exit 1
+              fi
+              ARGS="$ARGS --name '${{ inputs.group_name }}'"
               ;;
           esac
 

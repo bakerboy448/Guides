@@ -6,14 +6,16 @@ JSON files, enforcing all naming conventions and cross-reference rules from
 CONTRIBUTING.md.
 
 Supported commands:
-    add-cf-to-group      Add an existing Custom Format to a cf-group
+    add-cf-to-group           Add an existing Custom Format to a cf-group
+    add-cf-to-profile         Add a Custom Format to a quality profile's formatItems
     include-group-in-profile  Add a quality profile to a cf-group's include list
-    add-profile-to-group Register a quality profile in groups.json
-    new-cf-group         Scaffold a new cf-group JSON file
-    validate             Run all validation checks
-    list-profiles        List all quality profiles for an app
-    list-cf-groups       List all cf-groups for an app
-    list-cfs             List all Custom Formats for an app
+    add-profile-to-group      Register a quality profile in groups.json
+    new-cf-group              Scaffold a new cf-group JSON file
+    new-profile-group         Create a new group category in groups.json
+    validate                  Run all validation checks
+    list-profiles             List all quality profiles for an app
+    list-cf-groups            List all cf-groups for an app
+    list-cfs                  List all Custom Formats for an app
 
 Requirements: Python 3.9+ (stdlib only, no external dependencies).
 Works on Linux, macOS, and Windows.
@@ -33,18 +35,21 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 
 APPS = ("radarr", "sonarr")
-BASE = Path("docs/json")
 FILENAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+
+
+# ---------------------------------------------------------------------------
+# Exception
+# ---------------------------------------------------------------------------
+
+
+class CliError(Exception):
+    """Raised for user-facing errors that should stop execution."""
 
 
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
-
-
-def fatal(msg: str) -> None:
-    print(f"ERROR: {msg}", file=sys.stderr)
-    sys.exit(1)
 
 
 def info(msg: str) -> None:
@@ -55,19 +60,19 @@ def success(msg: str) -> None:
     print(f"  OK: {msg}")
 
 
-def load_json(path: Path) -> dict | list | None:
-    """Load and return parsed JSON, or None on failure."""
+def load_json(path: Path) -> dict | list:
+    """Load and return parsed JSON. Raises CliError on failure."""
     try:
         with open(path, encoding="utf-8") as f:
             return json.load(f)
     except (json.JSONDecodeError, OSError) as exc:
-        fatal(f"Failed to read {path}: {exc}")
-        return None  # unreachable, but keeps type checkers happy
+        raise CliError(f"Failed to read {path}: {exc}") from exc
 
 
 def save_json(path: Path, data: dict | list) -> None:
     """Write JSON with consistent formatting (2-space indent, trailing newline)."""
-    with open(path, "w", encoding="utf-8") as f:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
         f.write("\n")
 
@@ -90,7 +95,6 @@ def slugify(name: str) -> str:
     slug = slug.replace("+", "plus")
     slug = re.sub(r"[^a-z0-9]+", "-", slug)
     slug = slug.strip("-")
-    # Collapse multiple dashes
     slug = re.sub(r"-+", "-", slug)
     return slug
 
@@ -99,22 +103,25 @@ def validate_app_arg(app: str) -> str:
     """Validate and return the app argument."""
     app = app.lower()
     if app not in APPS:
-        fatal(f"Invalid app '{app}'. Must be one of: {', '.join(APPS)}")
+        raise CliError(f"Invalid app '{app}'. Must be one of: {', '.join(APPS)}")
     return app
 
 
-def resolve_base() -> Path:
-    """Find the repo root by looking for docs/json/."""
+def resolve_base(override: str | None = None) -> Path:
+    """Find docs/json/ directory. Use override if provided."""
+    if override:
+        p = Path(override)
+        if not p.is_dir():
+            raise CliError(f"Base directory not found: {p}")
+        return p
     current = Path(".").resolve()
-    candidates = [current, *current.parents]
-    for candidate in candidates:
+    for candidate in [current, *current.parents]:
         if (candidate / "docs" / "json").is_dir():
             return candidate / "docs" / "json"
-    fatal(
+    raise CliError(
         "Cannot find docs/json/ directory. "
-        "Run this script from the repository root or a subdirectory."
+        "Run this script from the repository root or use --base-dir."
     )
-    return BASE  # unreachable
 
 
 # ---------------------------------------------------------------------------
@@ -151,15 +158,15 @@ def load_profile_index(base: Path, app: str) -> dict[str, dict]:
     return index
 
 
-def load_groups(base: Path, app: str) -> list[dict]:
-    """Load quality-profile-groups/groups.json for an app."""
+def load_groups(base: Path, app: str) -> tuple[Path, list[dict]]:
+    """Load quality-profile-groups/groups.json. Returns (path, data)."""
     groups_file = base / app / "quality-profile-groups" / "groups.json"
     if not groups_file.is_file():
-        fatal(f"groups.json not found: {groups_file}")
+        raise CliError(f"groups.json not found: {groups_file}")
     data = load_json(groups_file)
     if not isinstance(data, list):
-        fatal(f"Expected JSON array in {groups_file}")
-    return data
+        raise CliError(f"Expected JSON array in {groups_file}")
+    return groups_file, data
 
 
 # ---------------------------------------------------------------------------
@@ -169,42 +176,40 @@ def load_groups(base: Path, app: str) -> list[dict]:
 
 def cmd_add_cf_to_group(args: argparse.Namespace) -> int:
     """Add a Custom Format to an existing cf-group."""
-    base = resolve_base()
+    base = resolve_base(getattr(args, "base_dir", None))
     app = validate_app_arg(args.app)
 
     cf_index = load_cf_index(base, app)
 
-    # Resolve the CF
     cf_tid = args.cf_trash_id
     if cf_tid not in cf_index:
-        fatal(
+        raise CliError(
             f"Custom Format with trash_id '{cf_tid}' not found in {app}/cf/. "
             f"Use 'list-cfs --app {app}' to see available CFs."
         )
     cf_filename, cf_name = cf_index[cf_tid]
 
-    # Resolve the cf-group file
     group_file = base / app / "cf-groups" / args.group_file
     if not group_file.suffix:
         group_file = group_file.with_suffix(".json")
     if not group_file.is_file():
-        fatal(
+        raise CliError(
             f"cf-group file not found: {group_file}. "
             f"Use 'list-cf-groups --app {app}' to see available groups."
         )
 
     group_data = load_json(group_file)
     if not isinstance(group_data, dict):
-        fatal(f"Expected JSON object in {group_file}")
+        raise CliError(f"Expected JSON object in {group_file}")
 
-    # Check if CF already exists in the group
     existing_tids = {
         entry.get("trash_id") for entry in group_data.get("custom_formats", [])
     }
     if cf_tid in existing_tids:
-        fatal(f"CF '{cf_name}' ({cf_tid}) already exists in {group_file.name}")
+        raise CliError(
+            f"CF '{cf_name}' ({cf_tid}) already exists in {group_file.name}"
+        )
 
-    # Build the new entry
     required = args.required if args.required is not None else True
     new_entry: dict = {
         "name": cf_name,
@@ -225,15 +230,14 @@ def cmd_add_cf_to_group(args: argparse.Namespace) -> int:
 
 def cmd_include_group_in_profile(args: argparse.Namespace) -> int:
     """Add a quality profile reference to a cf-group's quality_profiles.include."""
-    base = resolve_base()
+    base = resolve_base(getattr(args, "base_dir", None))
     app = validate_app_arg(args.app)
 
     profiles = load_profile_index(base, app)
 
-    # Resolve profile by slug
     slug = args.profile_slug
     if slug not in profiles:
-        fatal(
+        raise CliError(
             f"Profile '{slug}' not found in {app}/quality-profiles/. "
             f"Use 'list-profiles --app {app}' to see available profiles."
         )
@@ -241,18 +245,16 @@ def cmd_include_group_in_profile(args: argparse.Namespace) -> int:
     profile_name = profile_data.get("name", "")
     profile_tid = profile_data.get("trash_id", "")
 
-    # Resolve the cf-group file
     group_file = base / app / "cf-groups" / args.group_file
     if not group_file.suffix:
         group_file = group_file.with_suffix(".json")
     if not group_file.is_file():
-        fatal(f"cf-group file not found: {group_file}")
+        raise CliError(f"cf-group file not found: {group_file}")
 
     group_data = load_json(group_file)
     if not isinstance(group_data, dict):
-        fatal(f"Expected JSON object in {group_file}")
+        raise CliError(f"Expected JSON object in {group_file}")
 
-    # Ensure quality_profiles.include structure exists
     if "quality_profiles" not in group_data:
         group_data["quality_profiles"] = {"include": {}}
     elif "include" not in group_data["quality_profiles"]:
@@ -260,9 +262,8 @@ def cmd_include_group_in_profile(args: argparse.Namespace) -> int:
 
     include = group_data["quality_profiles"]["include"]
 
-    # Check if profile already included
     if profile_name in include:
-        fatal(
+        raise CliError(
             f"Profile '{profile_name}' already in "
             f"{group_file.name} quality_profiles.include"
         )
@@ -279,24 +280,21 @@ def cmd_include_group_in_profile(args: argparse.Namespace) -> int:
 
 def cmd_add_profile_to_group(args: argparse.Namespace) -> int:
     """Register a quality profile in quality-profile-groups/groups.json."""
-    base = resolve_base()
+    base = resolve_base(getattr(args, "base_dir", None))
     app = validate_app_arg(args.app)
 
     profiles = load_profile_index(base, app)
     slug = args.profile_slug
     if slug not in profiles:
-        fatal(
+        raise CliError(
             f"Profile '{slug}' not found in {app}/quality-profiles/. "
             f"Use 'list-profiles --app {app}' to see available profiles."
         )
     profile_tid = profiles[slug].get("trash_id", "")
 
-    groups_file = base / app / "quality-profile-groups" / "groups.json"
-    groups_data = load_groups(base, app)
-
+    groups_file, groups_data = load_groups(base, app)
     group_name = args.group_name
 
-    # Find or report available groups
     target_group = None
     available = []
     for group in groups_data:
@@ -305,14 +303,13 @@ def cmd_add_profile_to_group(args: argparse.Namespace) -> int:
             target_group = group
 
     if target_group is None:
-        fatal(
+        raise CliError(
             f"Group '{group_name}' not found in groups.json. "
             f"Available groups: {', '.join(available)}"
         )
 
-    # Check if slug already present
     if slug in target_group.get("profiles", {}):
-        fatal(f"Profile '{slug}' already in group '{group_name}'")
+        raise CliError(f"Profile '{slug}' already in group '{group_name}'")
 
     target_group.setdefault("profiles", {})[slug] = profile_tid
     save_json(groups_file, groups_data)
@@ -326,21 +323,21 @@ def cmd_add_profile_to_group(args: argparse.Namespace) -> int:
 
 def cmd_new_cf_group(args: argparse.Namespace) -> int:
     """Scaffold a new cf-group JSON file."""
-    base = resolve_base()
+    base = resolve_base(getattr(args, "base_dir", None))
     app = validate_app_arg(args.app)
 
     name = args.name
     slug = slugify(name)
 
     if not FILENAME_RE.match(slug):
-        fatal(
+        raise CliError(
             f"Generated slug '{slug}' violates naming convention. "
             "Must be lowercase alphanumeric with dashes only."
         )
 
     out_file = base / app / "cf-groups" / f"{slug}.json"
     if out_file.exists():
-        fatal(f"File already exists: {out_file}")
+        raise CliError(f"File already exists: {out_file}")
 
     trash_id = generate_trash_id(name)
     description = args.description or f"Collection of Custom Formats for {name}"
@@ -349,14 +346,13 @@ def cmd_new_cf_group(args: argparse.Namespace) -> int:
         "name": name,
         "trash_id": trash_id,
         "trash_description": description,
-        "custom_formats": [],
-        "quality_profiles": {
-            "include": {}
-        },
     }
 
     if args.default:
         group_data["default"] = "true"
+
+    group_data["custom_formats"] = []
+    group_data["quality_profiles"] = {"include": {}}
 
     save_json(out_file, group_data)
 
@@ -365,8 +361,98 @@ def cmd_new_cf_group(args: argparse.Namespace) -> int:
     info(f"  name: {name}")
     info("")
     info("Next steps:")
-    info(f"  1. Add CFs:     python scripts/guides-cli.py add-cf-to-group --app {app} --group-file {slug}.json --cf-trash-id <TRASH_ID>")
+    info(f"  1. Add CFs:       python scripts/guides-cli.py add-cf-to-group --app {app} --group-file {slug}.json --cf-trash-id <TRASH_ID>")
     info(f"  2. Link profiles: python scripts/guides-cli.py include-group-in-profile --app {app} --group-file {slug}.json --profile-slug <SLUG>")
+    return 0
+
+
+def cmd_add_cf_to_profile(args: argparse.Namespace) -> int:
+    """Add a Custom Format to a quality profile's formatItems."""
+    base = resolve_base(getattr(args, "base_dir", None))
+    app = validate_app_arg(args.app)
+
+    cf_index = load_cf_index(base, app)
+
+    cf_tid = args.cf_trash_id
+    if cf_tid not in cf_index:
+        raise CliError(
+            f"Custom Format with trash_id '{cf_tid}' not found in {app}/cf/. "
+            f"Use 'list-cfs --app {app}' to see available CFs."
+        )
+    _cf_filename, cf_name = cf_index[cf_tid]
+
+    profiles = load_profile_index(base, app)
+    slug = args.profile_slug
+    if slug not in profiles:
+        raise CliError(
+            f"Profile '{slug}' not found in {app}/quality-profiles/. "
+            f"Use 'list-profiles --app {app}' to see available profiles."
+        )
+
+    profile_file = base / app / "quality-profiles" / f"{slug}.json"
+    profile_data = load_json(profile_file)
+    if not isinstance(profile_data, dict):
+        raise CliError(f"Expected JSON object in {profile_file}")
+
+    format_items = profile_data.get("formatItems", {})
+
+    # Check if already present (by trash_id value or by name key)
+    if cf_name in format_items:
+        raise CliError(
+            f"CF '{cf_name}' already in {slug}.json formatItems"
+        )
+    if cf_tid in format_items.values():
+        existing_name = [k for k, v in format_items.items() if v == cf_tid][0]
+        raise CliError(
+            f"trash_id '{cf_tid}' already in {slug}.json formatItems "
+            f"(as '{existing_name}')"
+        )
+
+    format_items[cf_name] = cf_tid
+    profile_data["formatItems"] = format_items
+    save_json(profile_file, profile_data)
+
+    success(
+        f"Added CF '{cf_name}' ({cf_tid}) to "
+        f"{app}/quality-profiles/{slug}.json formatItems"
+    )
+    return 0
+
+
+def cmd_new_profile_group(args: argparse.Namespace) -> int:
+    """Create a new group category in quality-profile-groups/groups.json."""
+    base = resolve_base(getattr(args, "base_dir", None))
+    app = validate_app_arg(args.app)
+
+    group_name = args.name
+    groups_file, groups_data = load_groups(base, app)
+
+    # Check for duplicate group name
+    existing_names = [g.get("name", "") for g in groups_data]
+    if group_name in existing_names:
+        raise CliError(
+            f"Group '{group_name}' already exists in "
+            f"{app}/quality-profile-groups/groups.json"
+        )
+
+    new_group: dict = {
+        "name": group_name,
+        "profiles": {},
+    }
+
+    groups_data.append(new_group)
+    save_json(groups_file, groups_data)
+
+    success(
+        f"Created group '{group_name}' in "
+        f"{app}/quality-profile-groups/groups.json"
+    )
+    info("")
+    info("Next steps:")
+    info(
+        f"  Add profiles: python scripts/guides-cli.py add-profile-to-group "
+        f"--app {app} --profile-slug <SLUG> --group-name '{group_name}'"
+    )
     return 0
 
 
@@ -411,13 +497,12 @@ def cmd_validate(args: argparse.Namespace) -> int:
 
 def cmd_list_profiles(args: argparse.Namespace) -> int:
     """List all quality profiles for an app."""
-    base = resolve_base()
+    base = resolve_base(getattr(args, "base_dir", None))
     app = validate_app_arg(args.app)
 
     profiles = load_profile_index(base, app)
-    groups_data = load_groups(base, app)
+    _, groups_data = load_groups(base, app)
 
-    # Build reverse lookup: slug -> group name
     slug_to_group: dict[str, str] = {}
     for group in groups_data:
         for slug in group.get("profiles", {}):
@@ -439,12 +524,12 @@ def cmd_list_profiles(args: argparse.Namespace) -> int:
 
 def cmd_list_cf_groups(args: argparse.Namespace) -> int:
     """List all cf-groups for an app."""
-    base = resolve_base()
+    base = resolve_base(getattr(args, "base_dir", None))
     app = validate_app_arg(args.app)
 
     cf_groups_dir = base / app / "cf-groups"
     if not cf_groups_dir.is_dir():
-        fatal(f"cf-groups directory not found: {cf_groups_dir}")
+        raise CliError(f"cf-groups directory not found: {cf_groups_dir}")
 
     groups: list[tuple[str, str, str, int, int]] = []
     for f in sorted(cf_groups_dir.glob("*.json")):
@@ -470,7 +555,7 @@ def cmd_list_cf_groups(args: argparse.Namespace) -> int:
 
 def cmd_list_cfs(args: argparse.Namespace) -> int:
     """List all Custom Formats for an app."""
-    base = resolve_base()
+    base = resolve_base(getattr(args, "base_dir", None))
     app = validate_app_arg(args.app)
 
     cf_index = load_cf_index(base, app)
@@ -480,7 +565,7 @@ def cmd_list_cfs(args: argparse.Namespace) -> int:
     print(f"  {'─' * 34} {'─' * 50}")
 
     for tid in sorted(cf_index, key=lambda t: cf_index[t][1].lower()):
-        filename, name = cf_index[tid]
+        _filename, name = cf_index[tid]
         print(f"  {tid}  {name}")
 
     return 0
@@ -496,6 +581,10 @@ def build_parser() -> argparse.ArgumentParser:
         prog="guides-cli",
         description="TRaSH Guides contributor CLI — automate common JSON operations.",
         epilog="Run '<command> --help' for command-specific help.",
+    )
+    parser.add_argument(
+        "--base-dir",
+        help="Override the docs/json/ base directory (for testing or non-standard layouts)",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
@@ -526,7 +615,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p.add_argument("--app", required=True, choices=APPS, help="Target app")
     p.add_argument("--profile-slug", required=True, help="Quality profile slug")
-    p.add_argument("--group-name", required=True, help="Group name in groups.json (e.g. Standard, Anime, French)")
+    p.add_argument("--group-name", required=True, help="Group name in groups.json (e.g. Standard, Anime)")
+
+    # -- add-cf-to-profile --
+    p = subparsers.add_parser(
+        "add-cf-to-profile",
+        help="Add a Custom Format to a quality profile's formatItems",
+    )
+    p.add_argument("--app", required=True, choices=APPS, help="Target app")
+    p.add_argument("--profile-slug", required=True, help="Quality profile slug")
+    p.add_argument("--cf-trash-id", required=True, help="trash_id of the Custom Format to add")
 
     # -- new-cf-group --
     p = subparsers.add_parser(
@@ -534,9 +632,17 @@ def build_parser() -> argparse.ArgumentParser:
         help="Scaffold a new cf-group JSON file",
     )
     p.add_argument("--app", required=True, choices=APPS, help="Target app")
-    p.add_argument("--name", required=True, help="Display name for the group (e.g. '[Audio] Audio Formats')")
+    p.add_argument("--name", required=True, help="Display name for the group")
     p.add_argument("--description", help="Description of the group")
     p.add_argument("--default", action="store_true", help="Enable the group by default")
+
+    # -- new-profile-group --
+    p = subparsers.add_parser(
+        "new-profile-group",
+        help="Create a new group category in groups.json",
+    )
+    p.add_argument("--app", required=True, choices=APPS, help="Target app")
+    p.add_argument("--name", required=True, help="Display name for the group (e.g. Spanish, Italian)")
 
     # -- validate --
     subparsers.add_parser(
@@ -574,9 +680,11 @@ def build_parser() -> argparse.ArgumentParser:
 
 COMMANDS = {
     "add-cf-to-group": cmd_add_cf_to_group,
+    "add-cf-to-profile": cmd_add_cf_to_profile,
     "include-group-in-profile": cmd_include_group_in_profile,
     "add-profile-to-group": cmd_add_profile_to_group,
     "new-cf-group": cmd_new_cf_group,
+    "new-profile-group": cmd_new_profile_group,
     "validate": cmd_validate,
     "list-profiles": cmd_list_profiles,
     "list-cf-groups": cmd_list_cf_groups,
@@ -584,14 +692,18 @@ COMMANDS = {
 }
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     handler = COMMANDS.get(args.command)
     if handler is None:
         parser.print_help()
         return 1
-    return handler(args)
+    try:
+        return handler(args)
+    except CliError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
 
 
 if __name__ == "__main__":
