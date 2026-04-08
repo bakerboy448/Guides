@@ -1,0 +1,193 @@
+name: "Guides CLI"
+
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: "Command to run"
+        required: true
+        type: choice
+        options:
+          - add-cf-to-group
+          - include-group-in-profile
+          - add-profile-to-group
+          - new-cf-group
+          - validate
+          - list-profiles
+          - list-cf-groups
+          - list-cfs
+      app:
+        description: "Target app (required for all commands except validate)"
+        required: false
+        type: choice
+        options:
+          - radarr
+          - sonarr
+      group_file:
+        description: "cf-group filename (for add-cf-to-group, include-group-in-profile)"
+        required: false
+        type: string
+      cf_trash_id:
+        description: "CF trash_id to add (for add-cf-to-group)"
+        required: false
+        type: string
+      cf_required:
+        description: "CF required flag (for add-cf-to-group, default: true)"
+        required: false
+        type: choice
+        default: "true"
+        options:
+          - "true"
+          - "false"
+      cf_default:
+        description: "CF default-checked flag (for add-cf-to-group with required=false)"
+        required: false
+        type: string
+      profile_slug:
+        description: "Quality profile slug (for include-group-in-profile, add-profile-to-group)"
+        required: false
+        type: string
+      group_name:
+        description: "Group name in groups.json (for add-profile-to-group, e.g. Standard)"
+        required: false
+        type: string
+      cf_group_name:
+        description: "Display name for new cf-group (for new-cf-group)"
+        required: false
+        type: string
+      cf_group_description:
+        description: "Description for new cf-group (for new-cf-group)"
+        required: false
+        type: string
+      cf_group_default:
+        description: "Enable new cf-group by default (for new-cf-group)"
+        required: false
+        type: choice
+        default: "false"
+        options:
+          - "false"
+          - "true"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  run-cli:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Setup Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.x"
+
+      - name: Build CLI arguments
+        id: args
+        shell: bash
+        run: |
+          CMD="${{ inputs.command }}"
+          ARGS="$CMD"
+
+          # Add --app for commands that need it
+          if [[ "$CMD" != "validate" ]]; then
+            if [[ -z "${{ inputs.app }}" ]]; then
+              echo "::error::The --app input is required for command '$CMD'"
+              exit 1
+            fi
+            ARGS="$ARGS --app ${{ inputs.app }}"
+          fi
+
+          # Command-specific args
+          case "$CMD" in
+            add-cf-to-group)
+              if [[ -z "${{ inputs.group_file }}" || -z "${{ inputs.cf_trash_id }}" ]]; then
+                echo "::error::add-cf-to-group requires group_file and cf_trash_id"
+                exit 1
+              fi
+              ARGS="$ARGS --group-file '${{ inputs.group_file }}'"
+              ARGS="$ARGS --cf-trash-id '${{ inputs.cf_trash_id }}'"
+              ARGS="$ARGS --required ${{ inputs.cf_required }}"
+              if [[ -n "${{ inputs.cf_default }}" ]]; then
+                ARGS="$ARGS --default ${{ inputs.cf_default }}"
+              fi
+              ;;
+            include-group-in-profile)
+              if [[ -z "${{ inputs.group_file }}" || -z "${{ inputs.profile_slug }}" ]]; then
+                echo "::error::include-group-in-profile requires group_file and profile_slug"
+                exit 1
+              fi
+              ARGS="$ARGS --group-file '${{ inputs.group_file }}'"
+              ARGS="$ARGS --profile-slug '${{ inputs.profile_slug }}'"
+              ;;
+            add-profile-to-group)
+              if [[ -z "${{ inputs.profile_slug }}" || -z "${{ inputs.group_name }}" ]]; then
+                echo "::error::add-profile-to-group requires profile_slug and group_name"
+                exit 1
+              fi
+              ARGS="$ARGS --profile-slug '${{ inputs.profile_slug }}'"
+              ARGS="$ARGS --group-name '${{ inputs.group_name }}'"
+              ;;
+            new-cf-group)
+              if [[ -z "${{ inputs.cf_group_name }}" ]]; then
+                echo "::error::new-cf-group requires cf_group_name"
+                exit 1
+              fi
+              ARGS="$ARGS --name '${{ inputs.cf_group_name }}'"
+              if [[ -n "${{ inputs.cf_group_description }}" ]]; then
+                ARGS="$ARGS --description '${{ inputs.cf_group_description }}'"
+              fi
+              if [[ "${{ inputs.cf_group_default }}" == "true" ]]; then
+                ARGS="$ARGS --default"
+              fi
+              ;;
+          esac
+
+          echo "cli_args=$ARGS" >> "$GITHUB_OUTPUT"
+
+      - name: Run Guides CLI
+        shell: bash
+        run: |
+          echo "Running: python scripts/guides-cli.py ${{ steps.args.outputs.cli_args }}"
+          eval python scripts/guides-cli.py ${{ steps.args.outputs.cli_args }}
+
+      - name: Run validation after changes
+        if: inputs.command != 'validate' && inputs.command != 'list-profiles' && inputs.command != 'list-cf-groups' && inputs.command != 'list-cfs'
+        run: python scripts/guides-cli.py validate
+
+      - name: Check for changes
+        if: inputs.command != 'validate' && inputs.command != 'list-profiles' && inputs.command != 'list-cf-groups' && inputs.command != 'list-cfs'
+        id: changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        with:
+          commit-message: "feat(guide-sync): ${{ inputs.command }} via Guides CLI"
+          branch: cli/${{ inputs.command }}-${{ github.run_number }}
+          title: "feat(guide-sync): ${{ inputs.command }} via Guides CLI"
+          body: |
+            ## Automated change via Guides CLI
+
+            **Command:** `${{ inputs.command }}`
+            **App:** `${{ inputs.app }}`
+            **Triggered by:** @${{ github.actor }}
+
+            ### Parameters
+            - Group file: `${{ inputs.group_file }}`
+            - CF trash_id: `${{ inputs.cf_trash_id }}`
+            - Profile slug: `${{ inputs.profile_slug }}`
+            - Group name: `${{ inputs.group_name }}`
+            - CF group name: `${{ inputs.cf_group_name }}`
+
+            ---
+            *Generated by [Guides CLI](../blob/master/scripts/guides-cli.py) workflow*
