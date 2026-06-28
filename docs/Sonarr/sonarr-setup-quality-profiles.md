@@ -268,10 +268,9 @@ This is a must-have for every Quality Profile you use in our opinion. All these 
 
     A common example: you grab a release that isn't freeleech (a score of `1600`), and later the **exact same release** is uploaded as freeleech on another indexer (`1601`). Sonarr sees the higher score and re-downloads it as an "upgrade", even though it's effectively the same file.
 
-    This is an expected edge case rather than a bug. If you want to avoid it:
+    This is an expected edge case rather than a bug, and the recommended way to avoid it is **[cross-seed](https://www.cross-seed.org/){:target="\_blank" rel="noopener noreferrer"}**. With cross-seed the alternate (freeleech) copy of a release you already have is linked to your existing download instead of being grabbed again, so it can never trigger this kind of upgrade — and you still get the freeleech/ratio benefit.
 
-    - Use [cross-seed](https://www.cross-seed.org/){:target="\_blank" rel="noopener noreferrer"} so the release is already in your library and can't be grabbed again, **or**
-    - Raise the `Minimum Custom Format Score Increment` in your Quality Profile above `1`. Keep in mind this affects how *every* Custom Format triggers upgrades, so if you sync scores with a tool you'll need to account for the change.
+    Raising the `Minimum Custom Format Score Increment` in your Quality Profile above `1` will also stop it, but we don't recommend it as a first step: it changes how *every* Custom Format triggers upgrades, and if you sync scores with a tool you'll need to account for the change.
 
 ### Audio Channels
 
