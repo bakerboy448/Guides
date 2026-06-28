@@ -353,15 +353,13 @@ This is a must-have for every Quality Profile you use in our opinion. All these 
 
 ??? warning "Unwanted upgrades from single-point Custom Formats - [Click to show/hide]"
 
-    Our Quality Profiles use a `Minimum Custom Format Score Increment` of `1`. This means a release only needs to score **1 point higher** than what you already have before Radarr treats it as an upgrade.
+    Our Quality Profiles use a `Minimum Custom Format Score Increment` of `1`, so a release only needs `+1` more than what you already have to count as an upgrade.
 
-    Because of this, a Custom Format worth only `+1` — such as [{{ radarr['cf']['freeleech']['name'] }}](/Radarr/Radarr-collection-of-custom-formats/#freeleech){:target="\_blank" rel="noopener noreferrer"} or [{{ radarr['cf']['p2p-internal']['name'] }}](/Radarr/Radarr-collection-of-custom-formats/#p2p-internal){:target="\_blank" rel="noopener noreferrer"} — is enough on its own to trigger an upgrade.
+    A Custom Format worth only `+1`, like [{{ radarr['cf']['freeleech']['name'] }}](/Radarr/Radarr-collection-of-custom-formats/#freeleech){:target="\_blank" rel="noopener noreferrer"} or [{{ radarr['cf']['p2p-internal']['name'] }}](/Radarr/Radarr-collection-of-custom-formats/#p2p-internal){:target="\_blank" rel="noopener noreferrer"}, is enough on its own. For example, you grab a non-freeleech release (`1600`), the same release later appears as freeleech on another indexer (`1601`), and Radarr re-downloads it as an "upgrade".
 
-    A common example: you grab a release that isn't freeleech (a score of `1600`), and later the **exact same release** is uploaded as freeleech on another indexer (`1601`). Radarr sees the higher score and re-downloads it as an "upgrade", even though it's effectively the same file.
+    This is an expected edge case. The fix is by [cross-seeding](https://www.cross-seed.org/){:target="\_blank" rel="noopener noreferrer"}: the freeleech copy is linked to your existing download instead of being grabbed again, so it can't trigger an upgrade.
 
-    This is an expected edge case rather than a bug, and the recommended way to avoid it is **[cross-seed](https://www.cross-seed.org/){:target="\_blank" rel="noopener noreferrer"}**. With cross-seed the alternate (freeleech) copy of a release you already have is linked to your existing download instead of being grabbed again, so it can never trigger this kind of upgrade — and you still get the freeleech/ratio benefit.
-
-    Raising the `Minimum Custom Format Score Increment` in your Quality Profile above `1` will also stop it, but we don't recommend it as a first step: it changes how *every* Custom Format triggers upgrades, and if you sync scores with a tool you'll need to account for the change.
+    Raising the `Minimum Custom Format Score Increment` above `1` also works, but it affects every Custom Format and isn't recommended as a first step.
 
 ### Audio Channels
 
