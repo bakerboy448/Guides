@@ -258,6 +258,21 @@ This is a must-have for every Quality Profile you use in our opinion. All these 
 
     Also, it makes it much more clear what you prefer and what you want to avoid.
 
+### Unwanted upgrades from single-point Custom Formats
+
+??? warning "Unwanted upgrades from single-point Custom Formats - [Click to show/hide]"
+
+    Our Quality Profiles use a `Minimum Custom Format Score Increment` of `1`. This means a release only needs to score **1 point higher** than what you already have before Sonarr treats it as an upgrade.
+
+    Because of this, a Custom Format worth only `+1` — such as [{{ sonarr['cf']['freeleech']['name'] }}](/Sonarr/Sonarr-collection-of-custom-formats/#freeleech){:target="\_blank" rel="noopener noreferrer"} or [{{ sonarr['cf']['p2p-internal']['name'] }}](/Sonarr/Sonarr-collection-of-custom-formats/#p2p-internal){:target="\_blank" rel="noopener noreferrer"} — is enough on its own to trigger an upgrade.
+
+    A common example: you grab a release that isn't freeleech (a score of `1600`), and later the **exact same release** is uploaded as freeleech on another indexer (`1601`). Sonarr sees the higher score and re-downloads it as an "upgrade", even though it's effectively the same file.
+
+    This is an expected edge case rather than a bug. If you want to avoid it:
+
+    - Use [cross-seed](https://www.cross-seed.org/){:target="\_blank" rel="noopener noreferrer"} so the release is already in your library and can't be grabbed again, **or**
+    - Raise the `Minimum Custom Format Score Increment` in your Quality Profile above `1`. Keep in mind this affects how *every* Custom Format triggers upgrades, so if you sync scores with a tool you'll need to account for the change.
+
 ### Audio Channels
 
 ??? info "Audio Channels - [Click to show/hide]"
