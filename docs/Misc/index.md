@@ -6,3 +6,4 @@
 - [Setup TorGuard for port forwarding](/Misc/How-to-setup-Torguard-for-port-forwarding/) - Guide on how to set up port forwarding when you use Torguard as a VPN Service.
 - [x265-4k and Golden Rule](/Misc/x265-4k/) - Explanation of how 1080p x265 should be used correctly and how it's used often wrongly, and why the guide in general doesn't prefer 1080p x265 releases.
 - [User Promotion Deals](/user-promotion-deals/) - Find exclusive deals for TRaSH-Guides users.
+- [Banned Release Groups](/banned-rlsgrps-public/) - Release groups flagged by the LQ, LQ (Release Title) and Generated Dynamic HDR custom formats, with the reason and the PR that added each.
